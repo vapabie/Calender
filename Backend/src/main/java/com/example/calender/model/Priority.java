@@ -1,7 +1,6 @@
-package com.example.calender.entity;
+package com.example.calender.model;
 
 import jakarta.persistence.*;
-import jakarta.persistence.criteria.CriteriaBuilder;
 
 @Entity
 @Table( name = "priority")
@@ -17,4 +16,6 @@ public class Priority {
 
     @Column( name = "prioritypoints")
     private int PriorityPoints;
+
+
 }

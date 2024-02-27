@@ -1,4 +1,4 @@
-package com.example.calender.entity;
+package com.example.calender.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
