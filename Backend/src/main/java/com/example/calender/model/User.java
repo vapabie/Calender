@@ -19,7 +19,6 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    @Id
     @Column(name ="username")
     private String username;
 
