@@ -13,13 +13,13 @@ public class Priority {
     @Id
     @GeneratedValue
     @Column(name = "priorityid")
-    private long PriorityId;
+    private long priorityID;
 
     @Column(name = "priorityname")
-    private String PriorityName;
+    private String priorityName;
 
     @Column( name = "prioritypoints")
-    private int PriorityPoints;
+    private int priorityPoints;
 
 
 }

@@ -17,21 +17,21 @@ public class Color {
 
     @Id
     @Column( name ="hexcode")
-    private String Hexcode;
+    private String hexcode;
 
     @Column(name = "colorname")
-    private String ColorName;
+    private String colorName;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Color color = (Color) o;
-        return Objects.equals(Hexcode, color.Hexcode) && Objects.equals(ColorName, color.ColorName);
+        return Objects.equals(hexcode, color.hexcode) && Objects.equals(colorName, color.colorName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(Hexcode, ColorName);
+        return Objects.hash(hexcode, colorName);
     }
 }

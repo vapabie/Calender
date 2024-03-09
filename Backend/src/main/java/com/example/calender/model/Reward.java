@@ -13,11 +13,11 @@ public class Reward {
     @Id
     @GeneratedValue
     @Column(name = "rewardid")
-    private long RewardId;
+    private long rewardID;
 
     @Column(name = "r_name")
-    private String RewardName;
+    private String rewardName;
 
     @Column(name = "r_price")
-    private int Price;
+    private int price;
 }

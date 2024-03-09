@@ -17,28 +17,28 @@ public class User {
 
     @Id
     @Column(name = "email")
-    private String Email;
+    private String email;
 
     @Id
     @Column(name ="username")
-    private String Username;
+    private String username;
 
     @Column(name ="password")
-    private String Password;
+    private String password;
 
     @Column(name ="points")
-    private int Points;
+    private int points;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Points == user.Points && Objects.equals(Email, user.Email) && Objects.equals(Username, user.Username) && Objects.equals(Password, user.Password);
+        return points == user.points && Objects.equals(email, user.email) && Objects.equals(username, user.username) && Objects.equals(password, user.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(Email, Username, Password, Points);
+        return Objects.hash(email, username, password, points);
     }
 }

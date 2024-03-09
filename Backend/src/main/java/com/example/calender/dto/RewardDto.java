@@ -1,8 +1,8 @@
 package com.example.calender.dto;
 
 public class RewardDto {
-    private long RewardId;
-    private String RewardName;
-    private int Price;
+    private long rewardID;
+    private String rewardName;
+    private int price;
 
 }
