@@ -22,16 +22,4 @@ public class Color {
     @Column(name = "colorname")
     private String colorName;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Color color = (Color) o;
-        return Objects.equals(hexcode, color.hexcode) && Objects.equals(colorName, color.colorName);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(hexcode, colorName);
-    }
 }

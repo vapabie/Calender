@@ -35,26 +35,14 @@ public class Event {
     @Column(name = "isallday")
     private Boolean isAllDay;
 
-    @Column(name = "start")
+    @Column(name = "starttime")
     private LocalDateTime startTime;
 
-    @Column(name = "end")
+    @Column(name = "endtime")
     private LocalDateTime endTime;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_hexcode")
     private Color color;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Event event = (Event) o;
-        return priorityID == event.priorityID && Objects.equals(eventID, event.eventID) && Objects.equals(email, event.email) && Objects.equals(eventName, event.eventName) && Objects.equals(location, event.location) && Objects.equals(isAllDay, event.isAllDay) && Objects.equals(startTime, event.startTime) && Objects.equals(endTime, event.endTime) && Objects.equals(color, event.color);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(eventID, email, eventName, location, priorityID, isAllDay, startTime, endTime, color);
-    }
 }
