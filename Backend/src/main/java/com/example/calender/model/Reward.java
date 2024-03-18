@@ -1,12 +1,13 @@
 package com.example.calender.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Getter @Setter @NoArgsConstructor
+@Data
 @Table(name = "rewards")
 public class Reward {
 

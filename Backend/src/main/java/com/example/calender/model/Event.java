@@ -1,6 +1,7 @@
 package com.example.calender.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
-@Getter @Setter @NoArgsConstructor
+@Data
 @Table( name = "event")
 public class Event {
 
