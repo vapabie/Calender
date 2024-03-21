@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import Appbar from './Components/Appbar';
-import Sidebar from './Components/Sidebar';
+import Appbar from './components/Appbar';
+//import Sidebar from './components/Sidebar';
 import './App.css';
 
 function App() {
@@ -11,9 +11,7 @@ function App() {
           </div>
 
           <div className="Body-container">
-            <div className='Sidebar-container'>
-              <Sidebar/>
-            </div>
+            
 
           </div>
         </div>
