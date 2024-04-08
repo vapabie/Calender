@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import Appbar from './components/Appbar';
+import CalenderTable from './components/CalenderTable';
 //import Sidebar from './components/Sidebar';
 import './App.css';
 
@@ -12,10 +13,16 @@ function App() {
 
           <div className="Body-container">
             <div className='LeftSideBar-container'>
-              <div>sgsvdv</div>
-              <div>svsdvsgr</div>
+              <div className='MiniCalender-container'>
+
+              </div>
+              <div className='Preview-container'>
+                
+              </div>
             </div>
-            <div className='Center-container'></div>
+            <div className='Center-container'>
+              <CalenderTable/>
+            </div>
             <div className='RightSideBar-container'></div>
             
           </div>
