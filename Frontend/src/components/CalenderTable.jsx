@@ -1,39 +1,73 @@
-function CalenderTable() {
-  const CurrentYear = 2012;
-  const CurrentMonth = "January";
+import { Component } from "react";
+import CalenderHeader from "./CalenderHeader";
+import CalendarDays from "./CalenderDay";
 
-  return (
-    <div className="calTab">
-      <table className="cbar">
-        <tbody>
-          <tr>
-            <td className="prevMonthTD">
-              <button className=" btn">&lt;</button>
-            </td>
-            <td className="monthNow">
-              {CurrentMonth} {CurrentYear}
-            </td>
-            <td className="nextMonthTD">
-              <button className="btn">&gt;</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <table className="weekdays">
-        <thead>
-          <tr>
-            <th>M</th>
-            <th>Tu</th>
-            <th>W</th>
-            <th>Th</th>
-            <th>F</th>
-            <th>Sa</th>
-            <th>Su</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </div>
-  );
+class CalenderTable extends Component {
+  constructor() {
+    super();
+
+    this.months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
+    this.state = { currentDay: new Date() };
+  }
+
+  changeCurrentDay = (day) => {
+    this.setState({ currentDay: new Date(day.year, day.month, day.number) });
+  };
+
+  nextDay = () => {
+    this.setState({
+      currentDay: new Date(
+        this.state.currentDay.setDate(this.state.currentDay.getDate() + 1)
+      ),
+    });
+  };
+
+  previousDay = () => {
+    this.setState({
+      currentDay: new Date(
+        this.state.currentDay.setDate(this.state.currentDay.getDate() - 1)
+      ),
+    });
+  };
+
+  render() {
+    return (
+      <div className="calendar">
+        <CalenderHeader
+          year={this.state.currentDay.getFullYear}
+          month={this.state.currentDay.getMonth}
+        />
+        <div className="calendar-body">
+          <div className="table-header">
+            {this.weekdays.map((weekday) => {
+              return (
+                <div className="weekday">
+                  <p>{weekday}</p>
+                </div>
+              );
+            })}
+          </div>
+          <CalendarDays
+            day={this.state.currentDay}
+            changeCurrentDay={this.changeCurrentDay}
+          />
+        </div>
+      </div>
+    );
+  }
 }
 export default CalenderTable;

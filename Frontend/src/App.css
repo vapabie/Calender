@@ -75,3 +75,10 @@ td {
   box-shadow: 1ch 1ch 1ch rgba(0, 0, 0, 0.122);
   margin: 5px;
 }
+
+.calendar-day {
+  width: 125px;
+  height: 75px;
+  position: relative;
+  border: 1px solid #a6a6a6;
+}
