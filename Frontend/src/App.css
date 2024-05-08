@@ -82,3 +82,7 @@ td {
   position: relative;
   border: 1px solid #a6a6a6;
 }
+
+.itemTable {
+  border: medium solid black;
+}

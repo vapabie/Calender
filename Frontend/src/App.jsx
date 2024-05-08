@@ -1,28 +1,17 @@
 import NavBar from "./components/NavBar";
+import MainBody from "./components/MainBody";
 import Login from "./components/Login";
-import CalenderTable from "./components/CalenderTable";
 import "./App.css";
-import Preview from "./components/Preview";
 
 function App() {
-  return (
+  const isLogedIn = false;
+  return isLogedIn ? (
     <div>
       <NavBar />
-      <div className="Body-container">
-        <div className="LeftSideBar-container">
-          <div className="MiniCalender-container">
-            <CalenderTable />
-          </div>
-          <div className="Preview-container">
-            <Preview />
-          </div>
-        </div>
-        <div className="Center-container">
-          <CalenderTable />
-        </div>
-        <div className="RightSideBar-container"></div>
-      </div>
+      <MainBody />
     </div>
+  ) : (
+    <Login />
   );
 }
 
