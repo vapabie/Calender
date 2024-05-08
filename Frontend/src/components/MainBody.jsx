@@ -1,8 +1,7 @@
 import Item from "./Item";
 import Preview from "./Preview";
 
-function MainBody() {
-  const isAdmin = false;
+function MainBody({ isAdmin }) {
   return isAdmin ? (
     <Item />
   ) : (
