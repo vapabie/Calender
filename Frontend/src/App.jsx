@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import NavBar from "./components/NavBar";
-import MainBody from "./components/MainBody";
+import HomePage from "./components/HomePage";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
+
 import "./App.css";
 
 function App() {
-  const isLogedIn = false;
+  const isLogedIn = true;
 
   const [showLogin, setShowLogin] = useState(true);
   const toggleComponent = () => {
@@ -14,10 +14,7 @@ function App() {
   };
 
   return isLogedIn ? (
-    <div>
-      <NavBar />
-      <MainBody />
-    </div>
+    <HomePage />
   ) : (
     <div>
       {showLogin ? (
