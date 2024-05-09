@@ -1,15 +1,13 @@
 function AllDay() {
   return (
-    <div class="form-check">
+    <div className="form-check">
       <input
-        class="form-check-input"
+        className="form-check-input"
         type="checkbox"
         value=""
         id="flexCheckDefault"
       />
-      <label class="form-check-label" for="flexCheckDefault">
-        All Day
-      </label>
+      <label className="form-check-label">All Day</label>
     </div>
   );
 }
