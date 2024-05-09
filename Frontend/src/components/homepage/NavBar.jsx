@@ -1,7 +1,7 @@
-function NavBar({ isAdmin }, { onAddItemClicked }) {
+function NavBar({ isAdmin, onAddItemClicked }) {
   const handleAddItemClicked = () => {
-    onAddItemClicked;
-    console.log(clicked);
+    onAddItemClicked();
+    console.log("clicked");
   };
 
   return (

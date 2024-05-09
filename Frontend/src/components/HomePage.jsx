@@ -5,15 +5,16 @@ import MainBody from "./homepage/MainBody";
 function HomePage() {
   const [isAdmin, setIsAdmin] = useState(true);
 
-  const [isAddItemclicked, setIsAddItemClicked] = useState(false);
+  const [isAddItemClicked, setIsAddItemClicked] = useState(false);
   const handleAddItemClicked = () => {
     setIsAddItemClicked(true);
+    console.log(isAddItemClicked);
   };
 
   return (
     <div>
       <NavBar isAdmin={isAdmin} onAddItemClicked={handleAddItemClicked} />
-      <MainBody isAdmin={isAdmin} isAddItemclicked={isAddItemclicked} />
+      <MainBody isAdmin={isAdmin} isAddItemClicked={isAddItemClicked} />
     </div>
   );
 }
