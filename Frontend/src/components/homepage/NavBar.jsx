@@ -1,6 +1,6 @@
-function NavBar({ isAdmin, onAddItemClicked }) {
-  const handleAddItemClicked = () => {
-    onAddItemClicked();
+function NavBar({ isAdmin, onAddClicked }) {
+  const handleAddClicked = () => {
+    onAddClicked();
     console.log("clicked");
   };
 
@@ -20,11 +20,7 @@ function NavBar({ isAdmin, onAddItemClicked }) {
                 Priority
               </a>
             </div>
-            <button
-              type="button"
-              className="btn"
-              onClick={handleAddItemClicked}
-            >
+            <button type="button" className="btn" onClick={handleAddClicked}>
               +
             </button>
             <button type="button" className="btn">
@@ -53,11 +49,7 @@ function NavBar({ isAdmin, onAddItemClicked }) {
               </a>
             </div>
             <div className="anp">
-              <button
-                type="button"
-                className="btn"
-                onClick={handleAddItemClicked}
-              >
+              <button type="button" className="btn" onClick={handleAddClicked}>
                 +
               </button>
               <button type="button" className="btn">

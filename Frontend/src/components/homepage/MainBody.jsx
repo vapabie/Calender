@@ -1,11 +1,15 @@
 import AdminBody from "./mainbody/AdminBody";
 import UserBody from "./mainbody/UserBody";
 
-function MainBody({ isAdmin, isAddItemClicked }) {
+function MainBody({ isAdmin, isAddClicked, isSaveClicked, onSaveClicked }) {
   return isAdmin ? (
-    <AdminBody isAddItemClicked={isAddItemClicked} />
+    <AdminBody isAddClicked={isAddClicked} />
   ) : (
-    <UserBody isAddItemClicked={isAddItemClicked} />
+    <UserBody
+      isAddClicked={isAddClicked}
+      onSaveClicked={onSaveClicked}
+      isSaveClicked={isSaveClicked}
+    />
   );
 }
 

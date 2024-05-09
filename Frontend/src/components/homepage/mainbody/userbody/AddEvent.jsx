@@ -1,40 +1,23 @@
 import EventName from "./addevent/EventName";
 import AllDay from "./addevent/AllDay";
+import DropDown from "./addevent/DropDown";
 
-function AddEvent() {
+function AddEvent({ onSaveClicked }) {
+  const handleSaveClicked = () => {
+    {
+      /*save data to the db */
+    }
+    onSaveClicked();
+  };
   return (
     <div>
       <EventName />
-      <AddEvent />
+      <AllDay />
+      <DropDown />
+      <DropDown />
+      <DropDown />
 
-      <div class="dropdown">
-        <button
-          class="btn btn-secondary dropdown-toggle"
-          type="button"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          Color
-        </button>
-        <ul class="dropdown-menu">
-          <li>
-            <a class="dropdown-item" href="#">
-              Action
-            </a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#">
-              Another action
-            </a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#">
-              Something else here
-            </a>
-          </li>
-        </ul>
-      </div>
-      <button>save</button>
+      <button onClick={handleSaveClicked}>save</button>
     </div>
   );
 }

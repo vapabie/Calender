@@ -1,29 +1,12 @@
-import Preview from "./userbody/Preview";
+import React, { useState, useEffect } from "react";
+import Calendar from "./userbody/Calendar";
 import AddEvent from "./userbody/AddEvent";
 
-function UserBody({ isAddItemClicked }) {
-  return isAddItemClicked ? (
-    <AddEvent />
-  ) : (
-    <div className="Body-container">
-      <div className="LeftSideBar-container">
-        <div className="MiniCalender-container">
-          {/*
-          <CalenderTable />
-          */}
-        </div>
-        <div className="Preview-container">
-          <Preview />
-        </div>
-      </div>
-      <div className="Center-container">
-        {/*
-          <CalenderTable />
-        */}
-      </div>
-      <div className="RightSideBar-container"></div>
-    </div>
-  );
+function UserBody({ isAddClicked, isSaveClicked, onSaveClicked }) {
+  if (isAddClicked && !isSaveClicked) {
+    return <AddEvent onSaveClicked={onSaveClicked} />;
+  } else {
+    return <Calendar />;
+  }
 }
-
 export default UserBody;
