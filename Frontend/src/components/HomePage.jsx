@@ -1,13 +1,19 @@
 import React, { useState } from "react";
-import NavBar from "./NavBar";
-import MainBody from "./MainBody";
+import NavBar from "./homepage/NavBar";
+import MainBody from "./homepage/MainBody";
 
 function HomePage() {
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(true);
+
+  const [isAddItemclicked, setIsAddItemClicked] = useState(false);
+  const handleAddItemClicked = () => {
+    setIsAddItemClicked(true);
+  };
+
   return (
     <div>
-      <NavBar isAdmin={isAdmin} />
-      <MainBody isAdmin={isAdmin} />
+      <NavBar isAdmin={isAdmin} onAddItemClicked={handleAddItemClicked} />
+      <MainBody isAdmin={isAdmin} isAddItemclicked={isAddItemclicked} />
     </div>
   );
 }

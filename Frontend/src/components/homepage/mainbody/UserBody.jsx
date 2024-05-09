@@ -1,10 +1,7 @@
-import Item from "./Item";
-import Preview from "./Preview";
+import Preview from "./userbody/Preview";
 
-function MainBody({ isAdmin }) {
-  return isAdmin ? (
-    <Item />
-  ) : (
+function UserBody() {
+  return (
     <div className="Body-container">
       <div className="LeftSideBar-container">
         <div className="MiniCalender-container">
@@ -26,4 +23,4 @@ function MainBody({ isAdmin }) {
   );
 }
 
-export default MainBody;
+export default UserBody;

@@ -1,4 +1,9 @@
-function NavBar({ isAdmin }) {
+function NavBar({ isAdmin }, { onAddItemClicked }) {
+  const handleAddItemClicked = () => {
+    onAddItemClicked;
+    console.log(clicked);
+  };
+
   return (
     <div>
       <nav className="navbar bg-body-tertiary">
@@ -15,7 +20,11 @@ function NavBar({ isAdmin }) {
                 Priority
               </a>
             </div>
-            <button type="button" className="btn">
+            <button
+              type="button"
+              className="btn"
+              onClick={handleAddItemClicked}
+            >
               +
             </button>
             <button type="button" className="btn">
