@@ -3,7 +3,7 @@ import NavBar from "./homepage/NavBar";
 import MainBody from "./homepage/MainBody";
 
 function HomePage() {
-  const [isAdmin, setIsAdmin] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const [isAddItemClicked, setIsAddItemClicked] = useState(false);
   const handleAddItemClicked = () => {

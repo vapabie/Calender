@@ -5,7 +5,7 @@ function MainBody({ isAdmin, isAddItemClicked }) {
   return isAdmin ? (
     <AdminBody isAddItemClicked={isAddItemClicked} />
   ) : (
-    <UserBody />
+    <UserBody isAddItemClicked={isAddItemClicked} />
   );
 }
 

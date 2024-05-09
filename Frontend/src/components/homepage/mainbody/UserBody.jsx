@@ -1,7 +1,10 @@
 import Preview from "./userbody/Preview";
+import AddEvent from "./userbody/AddEvent";
 
-function UserBody() {
-  return (
+function UserBody({ isAddItemClicked }) {
+  return isAddItemClicked ? (
+    <AddEvent />
+  ) : (
     <div className="Body-container">
       <div className="LeftSideBar-container">
         <div className="MiniCalender-container">

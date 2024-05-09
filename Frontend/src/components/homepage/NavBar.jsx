@@ -53,7 +53,11 @@ function NavBar({ isAdmin, onAddItemClicked }) {
               </a>
             </div>
             <div className="anp">
-              <button type="button" className="btn">
+              <button
+                type="button"
+                className="btn"
+                onClick={handleAddItemClicked}
+              >
                 +
               </button>
               <button type="button" className="btn">
