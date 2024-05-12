@@ -1,7 +1,10 @@
 package com.example.calender.dto;
 
+import lombok.Data;
+
+@Data
 public class RewardDto {
-    private long rewardID;
+    private Long rewardID;
     private String rewardName;
     private int price;
 

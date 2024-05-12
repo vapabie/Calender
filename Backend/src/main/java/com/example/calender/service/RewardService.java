@@ -1,11 +1,19 @@
 package com.example.calender.service;
 
 import com.example.calender.dto.RewardDto;
-import com.example.calender.repo.RewardRepo;
+
+import java.util.List;
 
 public interface RewardService {
 
-    RewardDto saveReward(RewardDto rewardDto);
+    public RewardDto saveReward(RewardDto rewardDto);
 
-    RewardDto findById(Integer id);
+    RewardDto findRewardById(Long id);
+
+    List<RewardDto> findAllReward();
+
+    void deleteReward (Long id);
+
+    boolean isValidId(Long id);
+
 }
