@@ -1,9 +1,8 @@
 package com.example.calender.controller;
 
 import com.example.calender.dto.ColorDto;
-import com.example.calender.model.Color;
-import com.example.calender.service.ColorService;
 import com.example.calender.service.serviceImp.ColorServiceImp;
+import com.example.calender.service.serviceImp.RewardServiceImp;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,20 +12,22 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/calendarwebapp/home/admin")
+@RequestMapping("/calendarwebapp/home/admin/colors")
 @AllArgsConstructor
-public class AdminController {
+public class ColorController {
 
     @Autowired
     private ColorServiceImp colorServiceImp;
 
-   @GetMapping("/colors")
+
+
+   @GetMapping("")
    public ResponseEntity<List<ColorDto>> getAllColor(){
        List<ColorDto> colorDtoList = colorServiceImp.findAllColor();
        return new ResponseEntity<>(colorDtoList, HttpStatus.OK);
     }
 
-    @GetMapping("/colors/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<ColorDto> getColor(@PathVariable Long id){
 
         if(!colorServiceImp.isValidId(id)) {

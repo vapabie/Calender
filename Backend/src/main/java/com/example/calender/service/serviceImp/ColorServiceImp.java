@@ -45,11 +45,6 @@ public class ColorServiceImp implements ColorService {
         List<Color> colorList = colorRepo.findAll();
         return modelMapper.map(colorList, new TypeToken<List<ColorDto>>(){}.getType());
     }
-    @Override
-    public ColorDto updateColor(ColorDto colorDto) {
-       return null;
-
-    }
 
     @Override
     public void deleteColor(Long id) {
