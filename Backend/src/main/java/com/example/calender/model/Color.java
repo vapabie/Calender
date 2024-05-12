@@ -16,6 +16,7 @@ public class Color {
     @Column(name = "colorid")
     private Long colorID;
 
+    @NotNull
     @Column( name ="hexcode", unique = true)
     private String hexcode;
 
