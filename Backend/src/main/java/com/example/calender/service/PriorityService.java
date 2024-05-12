@@ -1,11 +1,22 @@
 package com.example.calender.service;
 
+
 import com.example.calender.dto.PriorityDto;
-import jakarta.persistence.criteria.CriteriaBuilder;
+
+
+import java.util.List;
 
 public interface PriorityService {
 
     PriorityDto savePriority(PriorityDto priorityDto);
 
-    PriorityDto findById(Integer id);
+    public PriorityDto findPriorityById(Long id);
+
+    List<PriorityDto> findAllPriority();
+
+    void deletePriority(Long id);
+
+    boolean isValidId( Long id);
+
+
 }

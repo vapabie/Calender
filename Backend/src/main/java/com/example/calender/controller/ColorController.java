@@ -2,7 +2,6 @@ package com.example.calender.controller;
 
 import com.example.calender.dto.ColorDto;
 import com.example.calender.service.serviceImp.ColorServiceImp;
-import com.example.calender.service.serviceImp.RewardServiceImp;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
