@@ -1,15 +1,10 @@
 package com.example.calender.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.NotNull;
 
-import java.util.Objects;
+
 
 @Entity
 @Data
@@ -17,9 +12,14 @@ import java.util.Objects;
 public class Color {
 
     @Id
-    @Column( name ="hexcode")
+    @GeneratedValue
+    @Column(name = "colorid")
+    private Long colorID;
+
+    @Column( name ="hexcode", unique = true)
     private String hexcode;
 
+    @NotNull
     @Column(name = "colorname")
     private String colorName;
 
