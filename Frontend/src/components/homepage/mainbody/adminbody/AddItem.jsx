@@ -1,15 +1,23 @@
-function AddItem() {
+import { useState } from "react";
+
+function AddItem({
+  onSaveClicked,
+  hexOnChange,
+  cnOnChange,
+  hexcode,
+  colorName,
+}) {
   return (
     <div>
       <div>
-        <label>name</label>
-        <input />
+        <label>hexcode</label>
+        <input value={hexcode} onChange={hexOnChange} />
       </div>
       <div>
-        <label>reward</label>
-        <input />
+        <label>name</label>
+        <input value={colorName} onChange={cnOnChange} />
       </div>
-      <button>save</button>
+      <button onClick={onSaveClicked}>save</button>
     </div>
   );
 }
