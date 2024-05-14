@@ -5,14 +5,14 @@ import SignUp from "./components/SignUp";
 
 import "./App.css";
 
-function App() {
-  const isLogedIn = true;
+const isLogedIn = true;
 
+const toggleComponent = () => {
   const [showLogin, setShowLogin] = useState(true);
-  const toggleComponent = () => {
-    setShowLogin(!showLogin);
-  };
+  setShowLogin(!showLogin);
+};
 
+function App() {
   return isLogedIn ? (
     <HomePage />
   ) : (

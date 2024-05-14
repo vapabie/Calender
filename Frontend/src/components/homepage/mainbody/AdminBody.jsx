@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Color from "./adminbody/Color";
 import Priority from "./adminbody/Priority";
 import Reward from "./adminbody/Reward";
@@ -6,9 +7,11 @@ function AdminBody({ screen, isAddClicked, isSaveClicked, onSaveClicked }) {
   const color = "color";
   const reward = "reward";
   const priority = "priority";
-  const screentype = screen;
+  useEffect(() => {
+    console.log("Current screen:", screen);
+  }, [screen]);
 
-  switch (screentype) {
+  switch (screen) {
     case "color":
       return (
         <Color

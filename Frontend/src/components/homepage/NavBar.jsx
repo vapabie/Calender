@@ -1,4 +1,4 @@
-function NavBar({ isAdmin, onAddClicked }) {
+function NavBar({ isAdmin, onAddClicked, onSwitchClicked }) {
   const handleAddClicked = () => {
     onAddClicked();
     console.log("clicked");
@@ -10,15 +10,27 @@ function NavBar({ isAdmin, onAddClicked }) {
         {isAdmin ? (
           <div className="container-fluid">
             <div className="btn-group">
-              <a href="colors" className="btn btn-primary">
+              <button
+                href="colors"
+                className="btn btn-primary"
+                onClick={() => onSwitchClicked("color")}
+              >
                 Color
-              </a>
-              <a href="rewards" className="btn btn-primary">
+              </button>
+              <button
+                href="rewards"
+                className="btn btn-primary"
+                onClick={() => onSwitchClicked("reward")}
+              >
                 Reward
-              </a>
-              <a href="priorities" className="btn btn-primary">
+              </button>
+              <button
+                href="priorities"
+                className="btn btn-primary"
+                onClick={() => onSwitchClicked("priority")}
+              >
                 Priority
-              </a>
+              </button>
             </div>
             <button type="button" className="btn" onClick={handleAddClicked}>
               +
