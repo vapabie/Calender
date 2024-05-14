@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddItem from "./AddItem";
 import Item from "./Items";
 
@@ -13,6 +13,7 @@ function Color({
   const [colorName, setColorName] = useState("");
   const hexOnchange = (e) => setHexcode(e.target.value);
   const cnOnChange = (e) => setColorName(e.target.value);
+  const [colors, setColors] = useState([]);
   const handleSaveClicked = (e) => {
     e.preventDefault();
     const color = { hexcode, colorName };
@@ -26,6 +27,13 @@ function Color({
     onSaveClicked();
   };
 
+  useEffect(() => {
+    fetch("http://localhost:8080/calendarwebapp/home/admin/colors")
+      .then((res) => res.json())
+      .then((result) => {
+        setColors(result);
+      });
+  }, []);
   if (isAddClicked && !isSaveClicked) {
     return (
       <AddItem
@@ -40,7 +48,11 @@ function Color({
     );
   } else {
     return (
-      <Item firstInputName={firstInputName} secondInputName={secondInputName} />
+      <Item
+        items={colors}
+        firstInputName={firstInputName}
+        secondInputName={secondInputName}
+      />
     );
   }
 }

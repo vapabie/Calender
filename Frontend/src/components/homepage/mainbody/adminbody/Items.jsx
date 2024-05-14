@@ -1,4 +1,4 @@
-function Item({ firstInputName, secondInputName }) {
+function Item({ firstInputName, secondInputName, items }) {
   return (
     <div>
       <table className="itemTable">
@@ -11,15 +11,19 @@ function Item({ firstInputName, secondInputName }) {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>
-              <button>edit</button>
-              <button>delete</button>
-            </td>
-          </tr>
+          {items.map((color) => (
+            <tr key={color.colorID}>
+              <td>{color.colorID}</td>
+              <td>{color.hexcode}</td>
+              <td>{color.colorName}</td>
+              <td>
+                <button>edit</button>
+              </td>
+              <td>
+                <button>delete</button>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
