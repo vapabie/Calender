@@ -1,15 +1,25 @@
-function AddItem() {
+import { useState } from "react";
+
+function AddItem({
+  onSaveClicked,
+  firstOnChange,
+  secondOnChange,
+  firstInputValue,
+  secondInputValue,
+  firstInputName,
+  secondInputName,
+}) {
   return (
     <div>
       <div>
-        <label>name</label>
-        <input />
+        <label>{firstInputName}</label>
+        <input value={firstInputValue} onChange={firstOnChange} />
       </div>
       <div>
-        <label>reward</label>
-        <input />
+        <label>{secondInputName}</label>
+        <input value={secondInputValue} onChange={secondOnChange} />
       </div>
-      <button>save</button>
+      <button onClick={onSaveClicked}>save</button>
     </div>
   );
 }
