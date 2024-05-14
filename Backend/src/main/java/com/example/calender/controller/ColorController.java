@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/calendarwebapp/home/admin/colors")
 @AllArgsConstructor
+@CrossOrigin
 public class ColorController {
 
     @Autowired

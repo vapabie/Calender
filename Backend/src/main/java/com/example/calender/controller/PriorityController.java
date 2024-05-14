@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/calendarwebapp/home/admin/prioritys")
 @AllArgsConstructor
+@CrossOrigin
 public class PriorityController {
 
     @Autowired
