@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AddItem from "./AddItem";
 import Item from "./Items";
 
@@ -13,6 +13,8 @@ function Reward({
   const [rewardPrice, setRewardPrice] = useState("");
   const nameOnChange = (e) => setRewardName(e.target.value);
   const priceOnChange = (e) => setRewardPrice(e.target.value);
+  const [rewards, setRewards] = useState([]);
+
   const handleSaveClicked = (e) => {
     e.preventDefault();
     const reward = { rewardName, rewardPrice };
@@ -25,6 +27,15 @@ function Reward({
     });
     onSaveClicked();
   };
+
+  useEffect(() => {
+    fetch("http://localhost:8080/calendarwebapp/home/admin/rewards")
+      .then((res) => res.json())
+      .then((result) => {
+        setRewards(result);
+      });
+  }, []);
+
   if (isAddClicked && !isSaveClicked) {
     return (
       <AddItem
@@ -39,7 +50,12 @@ function Reward({
     );
   } else {
     return (
-      <Item firstInputName={firstInputName} secondInputName={secondInputName} />
+      <Item
+        items={rewards}
+        itemType={"rewards"}
+        firstInputName={firstInputName}
+        secondInputName={secondInputName}
+      />
     );
   }
 }

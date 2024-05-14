@@ -14,6 +14,7 @@ function Color({
   const hexOnchange = (e) => setHexcode(e.target.value);
   const cnOnChange = (e) => setColorName(e.target.value);
   const [colors, setColors] = useState([]);
+
   const handleSaveClicked = (e) => {
     e.preventDefault();
     const color = { hexcode, colorName };
@@ -34,6 +35,7 @@ function Color({
         setColors(result);
       });
   }, []);
+
   if (isAddClicked && !isSaveClicked) {
     return (
       <AddItem
@@ -50,6 +52,7 @@ function Color({
     return (
       <Item
         items={colors}
+        itemType={"colors"}
         firstInputName={firstInputName}
         secondInputName={secondInputName}
       />

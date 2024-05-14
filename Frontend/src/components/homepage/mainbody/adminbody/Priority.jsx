@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Item from "./Items";
 import AddItem from "./AddItem";
 
@@ -13,6 +13,8 @@ function Priority({
   const [priorityPoints, setPriorityPoints] = useState("");
   const nameOnChange = (e) => setPriorityName(e.target.value);
   const pointsOnChange = (e) => setPriorityPoints(e.target.value);
+  const [prioritys, setPrioritys] = useState([]);
+
   const handleSaveClicked = (e) => {
     e.preventDefault();
     const priority = { priorityName, priorityPoints };
@@ -29,6 +31,14 @@ function Priority({
     onSaveClicked();
   };
 
+  useEffect(() => {
+    fetch("http://localhost:8080/calendarwebapp/home/admin/prioritys")
+      .then((res) => res.json())
+      .then((result) => {
+        setPrioritys(result);
+      });
+  }, []);
+
   if (isAddClicked && !isSaveClicked) {
     return (
       <AddItem
@@ -43,7 +53,12 @@ function Priority({
     );
   } else {
     return (
-      <Item firstInputName={firstInputName} secondInputName={secondInputName} />
+      <Item
+        items={prioritys}
+        itemType={"prioritys"}
+        firstInputName={firstInputName}
+        secondInputName={secondInputName}
+      />
     );
   }
 }
