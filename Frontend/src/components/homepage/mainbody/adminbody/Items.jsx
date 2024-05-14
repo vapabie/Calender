@@ -1,12 +1,12 @@
-function Item() {
+function Item({ firstInputName, secondInputName }) {
   return (
     <div>
       <table className="itemTable">
         <thead>
           <tr>
             <th>ID</th>
-            <th>Name</th>
-            <th>Reward</th>
+            <th>{firstInputName}</th>
+            <th>{secondInputName}</th>
             <th></th>
           </tr>
         </thead>

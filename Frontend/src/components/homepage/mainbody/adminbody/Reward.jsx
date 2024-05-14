@@ -2,38 +2,37 @@ import { useState } from "react";
 import AddItem from "./AddItem";
 import Item from "./Items";
 
-function Color({
+function Reward({
   isAddClicked,
   isSaveClicked,
   onSaveClicked,
   firstInputName,
   secondInputName,
 }) {
-  const [hexcode, setHexcode] = useState("");
-  const [colorName, setColorName] = useState("");
-  const hexOnchange = (e) => setHexcode(e.target.value);
-  const cnOnChange = (e) => setColorName(e.target.value);
+  const [rewardName, setRewardName] = useState("");
+  const [rewardPrice, setRewardPrice] = useState("");
+  const nameOnChange = (e) => setRewardName(e.target.value);
+  const priceOnChange = (e) => setRewardPrice(e.target.value);
   const handleSaveClicked = (e) => {
     e.preventDefault();
-    const color = { hexcode, colorName };
-    fetch("http://localhost:8080/calendarwebapp/home/admin/colors/addcolor", {
+    const reward = { rewardName, rewardPrice };
+    fetch("http://localhost:8080/calendarwebapp/home/admin/rewards/addreward", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(color),
+      body: JSON.stringify(reward),
     }).then(() => {
-      console.log("New color added");
+      console.log("New reward added");
     });
     onSaveClicked();
   };
-
   if (isAddClicked && !isSaveClicked) {
     return (
       <AddItem
         onSaveClicked={handleSaveClicked}
-        firstOnChange={hexOnchange}
-        secondOnChange={cnOnChange}
-        firstInputValue={hexcode}
-        secondInputValue={colorName}
+        firstOnChange={nameOnChange}
+        secondOnChange={priceOnChange}
+        firstInputValue={rewardName}
+        secondInputValue={rewardPrice}
         firstInputName={firstInputName}
         secondInputName={secondInputName}
       />
@@ -44,5 +43,4 @@ function Color({
     );
   }
 }
-
-export default Color;
+export default Reward;

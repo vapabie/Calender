@@ -2,20 +2,22 @@ import { useState } from "react";
 
 function AddItem({
   onSaveClicked,
-  hexOnChange,
-  cnOnChange,
-  hexcode,
-  colorName,
+  firstOnChange,
+  secondOnChange,
+  firstInputValue,
+  secondInputValue,
+  firstInputName,
+  secondInputName,
 }) {
   return (
     <div>
       <div>
-        <label>hexcode</label>
-        <input value={hexcode} onChange={hexOnChange} />
+        <label>{firstInputName}</label>
+        <input value={firstInputValue} onChange={firstOnChange} />
       </div>
       <div>
-        <label>name</label>
-        <input value={colorName} onChange={cnOnChange} />
+        <label>{secondInputName}</label>
+        <input value={secondInputValue} onChange={secondOnChange} />
       </div>
       <button onClick={onSaveClicked}>save</button>
     </div>
