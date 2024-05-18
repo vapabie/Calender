@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/calendarwebapp/home/admin/rewards")
+@CrossOrigin
 public class RewardController {
 
     @Autowired
