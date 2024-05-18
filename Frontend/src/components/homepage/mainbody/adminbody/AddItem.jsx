@@ -8,7 +8,12 @@ function AddItem({
   secondInputValue,
   firstInputName,
   secondInputName,
+  onItemsChange,
 }) {
+  const onAddClicked = () => {
+    onSaveClicked();
+    onItemsChange();
+  };
   return (
     <div>
       <div>
@@ -19,7 +24,7 @@ function AddItem({
         <label>{secondInputName}</label>
         <input value={secondInputValue} onChange={secondOnChange} />
       </div>
-      <button onClick={onSaveClicked}>save</button>
+      <button onClick={onAddClicked}>save</button>
     </div>
   );
 }

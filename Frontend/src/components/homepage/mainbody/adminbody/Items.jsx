@@ -1,4 +1,13 @@
-function Item({ firstInputName, secondInputName, items, itemType }) {
+import DeleteButton from "./DeleteButton";
+
+function Item({
+  firstInputName,
+  secondInputName,
+  items,
+  itemType,
+  fetchedpath,
+  onItemsChange,
+}) {
   return (
     <div>
       <table className="itemTable">
@@ -48,7 +57,11 @@ function Item({ firstInputName, secondInputName, items, itemType }) {
                     <button>edit</button>
                   </td>
                   <td>
-                    <button>delete</button>
+                    <DeleteButton
+                      itemId={item.priorityID}
+                      fetchingPath={fetchedpath}
+                      onDelete={onItemsChange}
+                    ></DeleteButton>
                   </td>
                 </tr>
               ))
