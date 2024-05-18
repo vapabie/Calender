@@ -2,24 +2,30 @@ import { useEffect, useState } from "react";
 import AddItem from "./AddItem";
 import Item from "./Items";
 
-function Color({
+export default function Color({
   isAddClicked,
   isSaveClicked,
   onSaveClicked,
   firstInputName,
   secondInputName,
+  url,
+  isEditing,
+  editingItem,
+  editingFalse,
+  editingTrue,
 }) {
   const [hexcode, setHexcode] = useState("");
   const [colorName, setColorName] = useState("");
   const hexOnchange = (e) => setHexcode(e.target.value);
   const cnOnChange = (e) => setColorName(e.target.value);
   const [colors, setColors] = useState([]);
-  const deletePath =
-    "http://localhost:8080/calendarwebapp/home/admin/colors/delete/{id}";
+  const deletePath = url + "colors/delete/";
+  const updatePath = url + "colors/update/";
+  const addpath = url + "colors/addcolor";
 
   const handleSaveClicked = () => {
     const color = { hexcode, colorName };
-    fetch("http://localhost:8080/calendarwebapp/home/admin/colors/addcolor", {
+    fetch(addpath, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(color),
@@ -29,25 +35,55 @@ function Color({
       setHexcode("");
       onSaveClicked();
       fetchColors();
+      editingFalse();
+    });
+  };
+
+  const handleUpdateClick = () => {
+    const color = { hexcode, colorName };
+    fetch(updatePath + editingItem.colorID, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(color),
+    }).then(() => {
+      console.log("Color Updated");
+      setColorName("");
+      setHexcode("");
+      fetchColors();
+      onSaveClicked();
+      editingFalse();
     });
   };
 
   const fetchColors = () => {
-    fetch("http://localhost:8080/calendarwebapp/home/admin/colors")
+    fetch(url + "colors")
       .then((res) => res.json())
       .then((result) => {
         setColors(result);
+      })
+      .catch((error) => {
+        console.error("Fetch error:", error);
       });
+  };
+
+  const handleEditClick = (item) => {
+    if (!item) {
+      console.error("Item is undefined");
+      return;
+    }
+    editingTrue(item);
+    setColorName(item.colorName);
+    setHexcode(item.hexcode);
   };
 
   useEffect(() => {
     fetchColors();
   }, []);
 
-  if (isAddClicked && !isSaveClicked) {
+  if ((isAddClicked && !isSaveClicked) || isEditing) {
     return (
       <AddItem
-        onSaveClicked={handleSaveClicked}
+        onSaveClicked={isEditing ? handleUpdateClick : handleSaveClicked}
         firstOnChange={hexOnchange}
         secondOnChange={cnOnChange}
         firstInputValue={hexcode}
@@ -66,9 +102,8 @@ function Color({
         secondInputName={secondInputName}
         fetchedpath={deletePath}
         onItemsChange={fetchColors}
+        onEditClick={handleEditClick}
       />
     );
   }
 }
-
-export default Color;

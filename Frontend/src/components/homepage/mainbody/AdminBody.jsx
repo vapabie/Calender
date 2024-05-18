@@ -1,9 +1,14 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import Color from "./adminbody/Color";
 import Priority from "./adminbody/Priority";
 import Reward from "./adminbody/Reward";
 
-function AdminBody({ screen, isAddClicked, isSaveClicked, onSaveClicked }) {
+export default function AdminBody({
+  screen,
+  isAddClicked,
+  isSaveClicked,
+  onSaveClicked,
+}) {
   const color = "color";
   const reward = "reward";
   const priority = "priority";
@@ -16,6 +21,21 @@ function AdminBody({ screen, isAddClicked, isSaveClicked, onSaveClicked }) {
 
   const priorityName = "Priority's Name";
   const priorityPoints = "Priority Points";
+
+  const url = "http://localhost:8080/calendarwebapp/home/admin/";
+
+  const [editingItem, setEditingItem] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
+
+  const editingFalse = (item) => {
+    setEditingItem(null);
+    setIsEditing(false);
+  };
+
+  const editingTrue = (item) => {
+    setEditingItem(item);
+    setIsEditing(true);
+  };
 
   useEffect(() => {
     console.log("Current screen:", screen);
@@ -30,6 +50,11 @@ function AdminBody({ screen, isAddClicked, isSaveClicked, onSaveClicked }) {
           onSaveClicked={onSaveClicked}
           firstInputName={colorHexcode}
           secondInputName={colorName}
+          url={url}
+          isEditing={isEditing}
+          editingItem={editingItem}
+          editingFalse={editingFalse}
+          editingTrue={editingTrue}
         />
       );
     case reward:
@@ -40,6 +65,11 @@ function AdminBody({ screen, isAddClicked, isSaveClicked, onSaveClicked }) {
           onSaveClicked={onSaveClicked}
           firstInputName={rewardName}
           secondInputName={rewardPrice}
+          url={url}
+          isEditing={isEditing}
+          editingItem={editingItem}
+          editingFalse={editingFalse}
+          editingTrue={editingTrue}
         />
       );
     case priority:
@@ -50,6 +80,11 @@ function AdminBody({ screen, isAddClicked, isSaveClicked, onSaveClicked }) {
           onSaveClicked={onSaveClicked}
           firstInputName={priorityName}
           secondInputName={priorityPoints}
+          url={url}
+          isEditing={isEditing}
+          editingItem={editingItem}
+          editingFalse={editingFalse}
+          editingTrue={editingTrue}
         />
       );
     default:
@@ -60,8 +95,12 @@ function AdminBody({ screen, isAddClicked, isSaveClicked, onSaveClicked }) {
           onSaveClicked={onSaveClicked}
           firstInputName={colorHexcode}
           secondInputName={colorName}
+          url={url}
+          isEditing={isEditing}
+          editingItem={editingItem}
+          editingFalse={editingFalse}
+          editingTrue={editingTrue}
         />
       );
   }
 }
-export default AdminBody;

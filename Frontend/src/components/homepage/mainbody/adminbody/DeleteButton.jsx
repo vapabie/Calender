@@ -1,6 +1,6 @@
 export default function DeleteButton({ fetchingPath, itemId, onDelete }) {
   const handleDelete = () => {
-    const url = fetchingPath.replace("{id}", itemId);
+    const url = fetchingPath + itemId;
     fetch(url, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
