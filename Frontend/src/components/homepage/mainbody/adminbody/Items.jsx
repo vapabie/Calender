@@ -1,4 +1,5 @@
 import DeleteButton from "./DeleteButton";
+import UpdateButton from "./UpdateButton";
 
 function Item({
   firstInputName,
@@ -7,6 +8,7 @@ function Item({
   itemType,
   fetchedpath,
   onItemsChange,
+  onEditClick,
 }) {
   return (
     <div>
@@ -28,7 +30,7 @@ function Item({
                   <td>{item.hexcode}</td>
                   <td>{item.colorName}</td>
                   <td>
-                    <button>edit</button>
+                    <UpdateButton item={item} onEditClick={onEditClick} />
                   </td>
                   <td>
                     <DeleteButton
@@ -45,7 +47,7 @@ function Item({
                   <td>{item.rewardName}</td>
                   <td>{item.price}</td>
                   <td>
-                    <button>edit</button>
+                    <UpdateButton item={item} onEditClick={onEditClick} />
                   </td>
                   <td>
                     <DeleteButton
@@ -62,7 +64,7 @@ function Item({
                   <td>{item.priorityName}</td>
                   <td>{item.priorityPoints}</td>
                   <td>
-                    <button>edit</button>
+                    <UpdateButton item={item} onEditClick={onEditClick} />
                   </td>
                   <td>
                     <DeleteButton

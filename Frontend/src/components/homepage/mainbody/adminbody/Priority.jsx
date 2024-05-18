@@ -15,11 +15,18 @@ function Priority({
   const pointsOnChange = (e) => setPriorityPoints(e.target.value);
   const [prioritys, setPrioritys] = useState([]);
 
+  const [editingItem, setEditingItem] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
+
   const deletePath =
     "http://localhost:8080/calendarwebapp/home/admin/prioritys/delete/{id}";
 
+  const updatePath =
+    "http://localhost:8080/calendarwebapp/home/admin/prioritys/update/";
+
   const handleSaveClicked = () => {
     const priority = { priorityName, priorityPoints };
+
     fetch(
       "http://localhost:8080/calendarwebapp/home/admin/prioritys/addpriority",
       {
@@ -31,6 +38,25 @@ function Priority({
       console.log("New priority added");
       setPriorityName("");
       setPriorityPoints("");
+      setEditingItem(null);
+      setIsEditing(false);
+      fetchPriorities();
+      onSaveClicked();
+    });
+  };
+
+  const handleUpdateClick = () => {
+    const priority = { priorityName, priorityPoints };
+    fetch(updatePath + editingItem.priorityID, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(priority),
+    }).then(() => {
+      console.log("Priority Updated");
+      setPriorityName("");
+      setPriorityPoints("");
+      setEditingItem(null);
+      setIsEditing(false);
       fetchPriorities();
       onSaveClicked();
     });
@@ -41,17 +67,32 @@ function Priority({
       .then((res) => res.json())
       .then((result) => {
         setPrioritys(result);
+      })
+      .catch((error) => {
+        console.error("Fetch error:", error);
       });
+  };
+
+  const handleEditClick = (item) => {
+    if (!item) {
+      console.error("Item is undefined");
+      return;
+    }
+    setEditingItem(item);
+    setPriorityName(item.priorityName);
+    setPriorityPoints(item.priorityPoints);
+    setIsEditing(true);
+    updatePath.replace("{id}", item.priorityID);
   };
 
   useEffect(() => {
     fetchPriorities();
   }, []);
 
-  if (isAddClicked && !isSaveClicked) {
+  if ((isAddClicked && !isSaveClicked) || isEditing) {
     return (
       <AddItem
-        onSaveClicked={handleSaveClicked}
+        onSaveClicked={isEditing ? handleUpdateClick : handleSaveClicked}
         firstOnChange={nameOnChange}
         secondOnChange={pointsOnChange}
         firstInputValue={priorityName}
@@ -70,6 +111,7 @@ function Priority({
         secondInputName={secondInputName}
         fetchedpath={deletePath}
         onItemsChange={fetchPriorities}
+        onEditClick={handleEditClick}
       />
     );
   }
