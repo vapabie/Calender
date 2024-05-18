@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import NavBar from "./homepage/NavBar";
 import MainBody from "./homepage/MainBody";
 
-function HomePage() {
+export default function HomePage() {
   const [isAdmin, setIsAdmin] = useState(true);
   const [isAddClicked, setIsAddClicked] = useState(false);
   const [isSaveClicked, setIsSaveClicked] = useState(false);
@@ -42,5 +42,3 @@ function HomePage() {
     </div>
   );
 }
-
-export default HomePage;

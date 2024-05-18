@@ -1,9 +1,4 @@
-import SignUp from "./SignUp";
-
-function Login({ toggleComponent }) {
-  const handleClick = () => {
-    return <SignUp />;
-  };
+export default function Login({ toggleComponent }) {
   return (
     <form className="login-signup-form">
       <h1>Please log in</h1>
@@ -34,5 +29,3 @@ function Login({ toggleComponent }) {
     </form>
   );
 }
-
-export default Login;

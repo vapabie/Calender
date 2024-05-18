@@ -1,4 +1,4 @@
-function NavBar({ isAdmin, onAddClicked, onSwitchClicked }) {
+export default function NavBar({ isAdmin, onAddClicked, onSwitchClicked }) {
   const handleAddClicked = () => {
     onAddClicked();
     console.log("clicked");
@@ -77,4 +77,3 @@ function NavBar({ isAdmin, onAddClicked, onSwitchClicked }) {
     </div>
   );
 }
-export default NavBar;

@@ -1,4 +1,4 @@
-function SignUp({ toggleComponent }) {
+export default function SignUp({ toggleComponent }) {
   return (
     <form className="login-signup-form">
       <h1>Sign Up!</h1>
@@ -52,5 +52,3 @@ function SignUp({ toggleComponent }) {
     </form>
   );
 }
-
-export default SignUp;
