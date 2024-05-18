@@ -31,7 +31,11 @@ function Item({
                     <button>edit</button>
                   </td>
                   <td>
-                    <button>delete</button>
+                    <DeleteButton
+                      itemId={item.colorID}
+                      fetchingPath={fetchedpath}
+                      onDelete={onItemsChange}
+                    ></DeleteButton>
                   </td>
                 </tr>
               )) ||
@@ -44,7 +48,11 @@ function Item({
                     <button>edit</button>
                   </td>
                   <td>
-                    <button>delete</button>
+                    <DeleteButton
+                      itemId={item.rewardID}
+                      fetchingPath={fetchedpath}
+                      onDelete={onItemsChange}
+                    />
                   </td>
                 </tr>
               )) ||

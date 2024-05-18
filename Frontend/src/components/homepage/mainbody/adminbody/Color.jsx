@@ -14,9 +14,10 @@ function Color({
   const hexOnchange = (e) => setHexcode(e.target.value);
   const cnOnChange = (e) => setColorName(e.target.value);
   const [colors, setColors] = useState([]);
+  const deletePath =
+    "http://localhost:8080/calendarwebapp/home/admin/colors/delete/{id}";
 
-  const handleSaveClicked = (e) => {
-    e.preventDefault();
+  const handleSaveClicked = () => {
     const color = { hexcode, colorName };
     fetch("http://localhost:8080/calendarwebapp/home/admin/colors/addcolor", {
       method: "POST",
@@ -24,16 +25,23 @@ function Color({
       body: JSON.stringify(color),
     }).then(() => {
       console.log("New color added");
+      setColorName("");
+      setHexcode("");
+      onSaveClicked();
+      fetchColors();
     });
-    onSaveClicked();
   };
 
-  useEffect(() => {
+  const fetchColors = () => {
     fetch("http://localhost:8080/calendarwebapp/home/admin/colors")
       .then((res) => res.json())
       .then((result) => {
         setColors(result);
       });
+  };
+
+  useEffect(() => {
+    fetchColors();
   }, []);
 
   if (isAddClicked && !isSaveClicked) {
@@ -46,6 +54,7 @@ function Color({
         secondInputValue={colorName}
         firstInputName={firstInputName}
         secondInputName={secondInputName}
+        onItemsChange={fetchColors}
       />
     );
   } else {
@@ -55,6 +64,8 @@ function Color({
         itemType={"colors"}
         firstInputName={firstInputName}
         secondInputName={secondInputName}
+        fetchedpath={deletePath}
+        onItemsChange={fetchColors}
       />
     );
   }

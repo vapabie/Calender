@@ -15,25 +15,33 @@ function Reward({
   const priceOnChange = (e) => setRewardPrice(e.target.value);
   const [rewards, setRewards] = useState([]);
 
-  const handleSaveClicked = (e) => {
-    e.preventDefault();
-    const reward = { rewardName, rewardPrice };
+  const deletePath =
+    "http://localhost:8080/calendarwebapp/home/admin/rewards/delete/{id}";
+
+  const handleSaveClicked = () => {
+    const reward = { rewardName, price: rewardPrice };
     fetch("http://localhost:8080/calendarwebapp/home/admin/rewards/addreward", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(reward),
     }).then(() => {
       console.log("New reward added");
+      setRewardName("");
+      setRewardPrice("");
+      onSaveClicked();
+      fetchRewards();
     });
-    onSaveClicked();
   };
-
-  useEffect(() => {
+  const fetchRewards = () => {
     fetch("http://localhost:8080/calendarwebapp/home/admin/rewards")
       .then((res) => res.json())
       .then((result) => {
         setRewards(result);
       });
+  };
+
+  useEffect(() => {
+    fetchRewards();
   }, []);
 
   if (isAddClicked && !isSaveClicked) {
@@ -46,6 +54,7 @@ function Reward({
         secondInputValue={rewardPrice}
         firstInputName={firstInputName}
         secondInputName={secondInputName}
+        onItemsChange={fetchRewards}
       />
     );
   } else {
@@ -55,6 +64,8 @@ function Reward({
         itemType={"rewards"}
         firstInputName={firstInputName}
         secondInputName={secondInputName}
+        fetchedpath={deletePath}
+        onItemsChange={fetchRewards}
       />
     );
   }

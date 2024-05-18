@@ -15,8 +15,10 @@ function Priority({
   const pointsOnChange = (e) => setPriorityPoints(e.target.value);
   const [prioritys, setPrioritys] = useState([]);
 
-  const handleSaveClicked = (e) => {
-    e.preventDefault();
+  const deletePath =
+    "http://localhost:8080/calendarwebapp/home/admin/prioritys/delete/{id}";
+
+  const handleSaveClicked = () => {
     const priority = { priorityName, priorityPoints };
     fetch(
       "http://localhost:8080/calendarwebapp/home/admin/prioritys/addpriority",
@@ -27,16 +29,23 @@ function Priority({
       }
     ).then(() => {
       console.log("New priority added");
+      setPriorityName("");
+      setPriorityPoints("");
+      fetchPriorities();
+      onSaveClicked();
     });
-    onSaveClicked();
   };
 
-  useEffect(() => {
+  const fetchPriorities = () => {
     fetch("http://localhost:8080/calendarwebapp/home/admin/prioritys")
       .then((res) => res.json())
       .then((result) => {
         setPrioritys(result);
       });
+  };
+
+  useEffect(() => {
+    fetchPriorities();
   }, []);
 
   if (isAddClicked && !isSaveClicked) {
@@ -49,6 +58,7 @@ function Priority({
         secondInputValue={priorityPoints}
         firstInputName={firstInputName}
         secondInputName={secondInputName}
+        onItemsChange={fetchPriorities}
       />
     );
   } else {
@@ -58,6 +68,8 @@ function Priority({
         itemType={"prioritys"}
         firstInputName={firstInputName}
         secondInputName={secondInputName}
+        fetchedpath={deletePath}
+        onItemsChange={fetchPriorities}
       />
     );
   }
