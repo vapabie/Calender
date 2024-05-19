@@ -1,4 +1,24 @@
-function DropDown() {
+import { useState } from "react";
+export default function DropDown({
+  items,
+  setDropDownName,
+  dropDownName = "Select an option",
+  displayProperty = "name",
+  keyProperty = "id",
+}) {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+    console.log("dropdown clicked, is it opened?: " + isDropdownOpen);
+  };
+  const onDropDownItemClick = (item) => {
+    setDropDownName(item[displayProperty]);
+    setIsDropdownOpen(false);
+    console.log(
+      "item choosen from drop down, is it opened?: " + isDropdownOpen
+    );
+  };
+
   return (
     <div className="dropdown">
       <button
@@ -6,28 +26,25 @@ function DropDown() {
         type="button"
         data-bs-toggle="dropdown"
         aria-expanded="false"
+        onClick={toggleDropdown}
       >
-        Name of dropdown
+        {dropDownName}
+        {isDropdownOpen && (
+          <div>
+            <ul>
+              {items.map((item) => (
+                <li
+                  key={item[keyProperty]}
+                  value={item[displayProperty]}
+                  onClick={() => onDropDownItemClick(item)}
+                >
+                  <span>{item[displayProperty]}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </button>
-      <ul className="dropdown-menu">
-        <li>
-          <a className="dropdown-item" href="#">
-            Action
-          </a>
-        </li>
-        <li>
-          <a className="dropdown-item" href="#">
-            Another action
-          </a>
-        </li>
-        <li>
-          <a className="dropdown-item" href="#">
-            Something else here
-          </a>
-        </li>
-      </ul>
     </div>
   );
 }
-
-export default DropDown;

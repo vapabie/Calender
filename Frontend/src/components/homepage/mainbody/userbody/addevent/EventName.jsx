@@ -1,9 +1,7 @@
-function EventName() {
+export default function EventName({ eventName }) {
   return (
     <div>
-      <input placeholder="Name of event" />
+      <input placeholder="Name of event" value={eventName} />
     </div>
   );
 }
-
-export default EventName;
