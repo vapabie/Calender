@@ -2,44 +2,36 @@ import { useState, useEffect } from "react";
 import Item from "./Items";
 import AddItem from "./AddItem";
 
-function Priority({
+export default function Priority({
   isAddClicked,
   isSaveClicked,
   onSaveClicked,
   firstInputName,
   secondInputName,
+  url,
+  isEditing,
+  editingItem,
+  editingFalse,
+  editingTrue,
 }) {
   const [priorityName, setPriorityName] = useState("");
   const [priorityPoints, setPriorityPoints] = useState("");
   const nameOnChange = (e) => setPriorityName(e.target.value);
   const pointsOnChange = (e) => setPriorityPoints(e.target.value);
   const [prioritys, setPrioritys] = useState([]);
-
-  const [editingItem, setEditingItem] = useState(null);
-  const [isEditing, setIsEditing] = useState(false);
-
-  const deletePath =
-    "http://localhost:8080/calendarwebapp/home/admin/prioritys/delete/{id}";
-
-  const updatePath =
-    "http://localhost:8080/calendarwebapp/home/admin/prioritys/update/";
+  const deletePath = url + "prioritys/delete/";
 
   const handleSaveClicked = () => {
     const priority = { priorityName, priorityPoints };
-
-    fetch(
-      "http://localhost:8080/calendarwebapp/home/admin/prioritys/addpriority",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(priority),
-      }
-    ).then(() => {
+    fetch(url + "prioritys/addpriority", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(priority),
+    }).then(() => {
       console.log("New priority added");
       setPriorityName("");
       setPriorityPoints("");
-      setEditingItem(null);
-      setIsEditing(false);
+      editingFalse();
       fetchPriorities();
       onSaveClicked();
     });
@@ -47,7 +39,7 @@ function Priority({
 
   const handleUpdateClick = () => {
     const priority = { priorityName, priorityPoints };
-    fetch(updatePath + editingItem.priorityID, {
+    fetch(url + "prioritys/update/" + editingItem.priorityID, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(priority),
@@ -55,15 +47,14 @@ function Priority({
       console.log("Priority Updated");
       setPriorityName("");
       setPriorityPoints("");
-      setEditingItem(null);
-      setIsEditing(false);
       fetchPriorities();
       onSaveClicked();
+      editingFalse();
     });
   };
 
   const fetchPriorities = () => {
-    fetch("http://localhost:8080/calendarwebapp/home/admin/prioritys")
+    fetch(url + "prioritys")
       .then((res) => res.json())
       .then((result) => {
         setPrioritys(result);
@@ -78,11 +69,9 @@ function Priority({
       console.error("Item is undefined");
       return;
     }
-    setEditingItem(item);
+    editingTrue(item);
     setPriorityName(item.priorityName);
     setPriorityPoints(item.priorityPoints);
-    setIsEditing(true);
-    updatePath.replace("{id}", item.priorityID);
   };
 
   useEffect(() => {
@@ -116,4 +105,3 @@ function Priority({
     );
   }
 }
-export default Priority;

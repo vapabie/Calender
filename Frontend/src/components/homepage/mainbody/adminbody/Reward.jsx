@@ -2,25 +2,28 @@ import { useState, useEffect } from "react";
 import AddItem from "./AddItem";
 import Item from "./Items";
 
-function Reward({
+export default function Reward({
   isAddClicked,
   isSaveClicked,
   onSaveClicked,
   firstInputName,
   secondInputName,
+  url,
+  isEditing,
+  editingItem,
+  editingFalse,
+  editingTrue,
 }) {
   const [rewardName, setRewardName] = useState("");
   const [rewardPrice, setRewardPrice] = useState("");
   const nameOnChange = (e) => setRewardName(e.target.value);
   const priceOnChange = (e) => setRewardPrice(e.target.value);
   const [rewards, setRewards] = useState([]);
-
-  const deletePath =
-    "http://localhost:8080/calendarwebapp/home/admin/rewards/delete/{id}";
+  const deletePath = url + "rewards/delete/";
 
   const handleSaveClicked = () => {
     const reward = { rewardName, price: rewardPrice };
-    fetch("http://localhost:8080/calendarwebapp/home/admin/rewards/addreward", {
+    fetch(url + "rewards/addreward", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(reward),
@@ -30,24 +33,55 @@ function Reward({
       setRewardPrice("");
       onSaveClicked();
       fetchRewards();
+      editingFalse();
     });
   };
+
+  const handleUpdateClick = () => {
+    const reward = { rewardName, price: rewardPrice };
+    fetch(url + "rewards/update/" + editingItem.rewardID, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(reward),
+    }).then(() => {
+      console.log("Reward Updated");
+      setPriorityName("");
+      setPriorityPoints("");
+      fetchPriorities();
+      onSaveClicked();
+      editingFalse();
+    });
+  };
+
   const fetchRewards = () => {
-    fetch("http://localhost:8080/calendarwebapp/home/admin/rewards")
+    fetch(url + "rewards")
       .then((res) => res.json())
       .then((result) => {
         setRewards(result);
+      })
+      .catch((error) => {
+        console.error("Fetch error:", error);
       });
+  };
+
+  const handleEditClick = (item) => {
+    if (!item) {
+      console.error("Item is undefined");
+      return;
+    }
+    editingTrue(item);
+    setRewardName(item.rewardName);
+    setRewardPrice(item.price);
   };
 
   useEffect(() => {
     fetchRewards();
   }, []);
 
-  if (isAddClicked && !isSaveClicked) {
+  if ((isAddClicked && !isSaveClicked) || isEditing) {
     return (
       <AddItem
-        onSaveClicked={handleSaveClicked}
+        onSaveClicked={isEditing ? handleUpdateClick : handleSaveClicked}
         firstOnChange={nameOnChange}
         secondOnChange={priceOnChange}
         firstInputValue={rewardName}
@@ -66,8 +100,8 @@ function Reward({
         secondInputName={secondInputName}
         fetchedpath={deletePath}
         onItemsChange={fetchRewards}
+        onEditClick={handleEditClick}
       />
     );
   }
 }
-export default Reward;

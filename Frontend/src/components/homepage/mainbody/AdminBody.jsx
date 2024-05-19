@@ -12,18 +12,13 @@ export default function AdminBody({
   const color = "color";
   const reward = "reward";
   const priority = "priority";
-
   const colorHexcode = "Hexcode";
   const colorName = "Color's Name";
-
   const rewardName = "Reward's Name";
   const rewardPrice = "Reward's Price";
-
   const priorityName = "Priority's Name";
   const priorityPoints = "Priority Points";
-
   const url = "http://localhost:8080/calendarwebapp/home/admin/";
-
   const [editingItem, setEditingItem] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
 
