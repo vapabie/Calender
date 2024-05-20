@@ -6,5 +6,13 @@ public interface UserService {
 
     UserDto saveUser(UserDto userDto);
 
-    UserDto findById(Integer id);
+    UserDto findUserById(Long id);
+
+    UserDto findUserByEmail(String email);
+
+    void deleteUser(Long id);
+
+    boolean isValidId(Long id);
+
+    boolean isValidEmail( String email);
 }
