@@ -1,4 +1,6 @@
-function CalendarDays(props) {
+import EventsOfDay from "./EventsOfDay";
+
+export default function CalendarDays(props) {
   const firstDayOfMonth = new Date(
     props.day.getFullYear(),
     props.day.getMonth(),
@@ -58,6 +60,7 @@ function CalendarDays(props) {
                   onClick={() => props.changeCurrentDay(day)}
                 >
                   {day.number}
+                  <EventsOfDay />
                 </td>
               );
             })}
@@ -67,5 +70,3 @@ function CalendarDays(props) {
     </table>
   );
 }
-
-export default CalendarDays;

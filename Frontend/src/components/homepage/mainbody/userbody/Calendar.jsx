@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Preview from "./Preview";
-import CalenderTable from "./CalenderTable";
+import CalenderTable from "./calendar/CalenderTable";
 import AssistensSidebar from "./AssistensSidebar";
 
 function Calendar() {
