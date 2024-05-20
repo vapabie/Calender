@@ -20,6 +20,7 @@ class CalenderTable extends Component {
       "November",
       "December",
     ];
+    this.weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
     this.state = { currentDay: new Date() };
   }
@@ -48,19 +49,10 @@ class CalenderTable extends Component {
     return (
       <div className="calendar">
         <CalenderHeader
-          year={this.state.currentDay.getFullYear}
-          month={this.state.currentDay.getMonth}
+          year={this.state.currentDay.getFullYear()}
+          month={this.months[this.state.currentDay.getMonth()]}
         />
         <div className="calendar-body">
-          <div className="table-header">
-            {this.weekdays.map((weekday) => {
-              return (
-                <div className="weekday">
-                  <p>{weekday}</p>
-                </div>
-              );
-            })}
-          </div>
           <CalendarDays
             day={this.state.currentDay}
             changeCurrentDay={this.changeCurrentDay}

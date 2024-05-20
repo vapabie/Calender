@@ -1,4 +1,4 @@
-function CalenderHeader(props) {
+function CalenderHeader({ year, month }) {
   return (
     <table className="cbar">
       <tbody>
@@ -7,7 +7,7 @@ function CalenderHeader(props) {
             <button className=" btn">&lt;</button>
           </td>
           <td className="monthNow">
-            {props.year} {props.month}
+            {year} {month}
           </td>
           <td className="nextMonthTD">
             <button className="btn">&gt;</button>

@@ -1,10 +1,9 @@
+import { useState } from "react";
 import Preview from "./Preview";
+import CalenderTable from "./CalenderTable";
+import AssistensSidebar from "./AssistensSidebar";
 
-Preview;
-function Calendar({ setIsSaveClicked }) {
-  const setLocalIsSaveClicked = () => {
-    setIsSaveClicked(false);
-  };
+function Calendar() {
   return (
     <div className="Body-container">
       <div className="LeftSideBar-container">
@@ -18,11 +17,11 @@ function Calendar({ setIsSaveClicked }) {
         </div>
       </div>
       <div className="Center-container">
-        {/*
-          <CalenderTable />
-        */}
+        <CalenderTable />
       </div>
-      <div className="RightSideBar-container"></div>
+      <div className="RightSideBar-container">
+        <AssistensSidebar />
+      </div>
     </div>
   );
 }

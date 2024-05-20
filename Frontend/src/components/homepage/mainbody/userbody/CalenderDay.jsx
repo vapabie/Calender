@@ -34,14 +34,11 @@ function CalendarDays(props) {
     <table className="calendar-table">
       <thead>
         <tr>
-          {" "}
-          <td>Sun</td>
-          <td>Mon</td>
-          <td>Tue</td>
-          <td>Wed</td>
-          <td>Thu</td>
-          <td>Fri</td>
-          <td>Sat</td>
+          {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(
+            (day, index) => (
+              <td key={index}>{day}</td>
+            )
+          )}
         </tr>
       </thead>
       <tbody>
