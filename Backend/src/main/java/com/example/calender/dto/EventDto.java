@@ -1,20 +1,26 @@
 package com.example.calender.dto;
 
-import com.example.calender.model.Color;
 import com.example.calender.model.Priority;
 import com.example.calender.model.User;
+import lombok.Data;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+
+@Data
 
 public class EventDto {
     private Long eventID;
-    private User username;
+    private Long userID;
     private String eventName;
     private String location;
-    private Priority priorityID;
+    private Long priorityID;
     private Boolean isAllDay;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
-    private Color color;
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private LocalTime startTime;
+    private LocalTime endTime;
+    private Long colorID;
 
 }

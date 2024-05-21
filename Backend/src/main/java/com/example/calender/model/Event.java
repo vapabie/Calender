@@ -2,12 +2,11 @@ package com.example.calender.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Objects;
+import java.time.LocalTime;
+
 
 @Entity
 @Data
@@ -19,9 +18,9 @@ public class Event {
     @Column(name = "eventid")
     private Long eventID;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_email")
-    private User email;
+    @ManyToOne
+    @JoinColumn(name = "fk_userid")
+    private User userID;
 
     @Column(name = "eventname")
     private String eventName;
@@ -29,21 +28,26 @@ public class Event {
     @Column(name = "location")
     private String location;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "fk_priorityid")
     private Priority priorityID;
 
     @Column(name = "isallday")
     private Boolean isAllDay;
 
+    @Column(name = "startdate")
+    private LocalDate startDate;
+
+    @Column(name = "enddate")
+    private LocalDate endDate;
+
     @Column(name = "starttime")
-    private LocalDateTime startTime;
+    private LocalTime startTime;
 
     @Column(name = "endtime")
-    private LocalDateTime endTime;
+    private LocalTime endTime;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_hexcode")
+    @ManyToOne
+    @JoinColumn(name = "fk_colorid")
     private Color color;
-
 }
