@@ -19,11 +19,10 @@ export default function Color({
   const hexOnchange = (e) => setHexcode(e.target.value);
   const cnOnChange = (e) => setColorName(e.target.value);
   const [colors, setColors] = useState([]);
-  const deletePath = url + "colors/delete/";
 
   const handleSaveClicked = () => {
     const color = { hexcode, colorName };
-    fetch(url + "colors/addcolor", {
+    fetch(url + "/addcolor", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(color),
@@ -39,7 +38,7 @@ export default function Color({
 
   const handleUpdateClick = () => {
     const color = { hexcode, colorName };
-    fetch(url + "colors/update/" + editingItem.colorID, {
+    fetch(url + "/update/" + editingItem.colorID, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(color),
@@ -54,7 +53,7 @@ export default function Color({
   };
 
   const fetchColors = () => {
-    fetch(url + "colors")
+    fetch(url)
       .then((res) => res.json())
       .then((result) => {
         setColors(result);
@@ -98,7 +97,7 @@ export default function Color({
         itemType={"colors"}
         firstInputName={firstInputName}
         secondInputName={secondInputName}
-        fetchedpath={deletePath}
+        fetchedpath={url + "/delete/"}
         onItemsChange={fetchColors}
         onEditClick={handleEditClick}
       />

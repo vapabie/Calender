@@ -4,6 +4,7 @@ import Priority from "./adminbody/Priority";
 import Reward from "./adminbody/Reward";
 
 export default function AdminBody({
+  url,
   screen,
   isAddClicked,
   isSaveClicked,
@@ -18,7 +19,6 @@ export default function AdminBody({
   const rewardPrice = "Reward's Price";
   const priorityName = "Priority's Name";
   const priorityPoints = "Priority Points";
-  const url = "http://localhost:8080/calendarwebapp/home/admin/";
   const [editingItem, setEditingItem] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -45,7 +45,7 @@ export default function AdminBody({
           onSaveClicked={onSaveClicked}
           firstInputName={colorHexcode}
           secondInputName={colorName}
-          url={url}
+          url={url + "/colors"}
           isEditing={isEditing}
           editingItem={editingItem}
           editingFalse={editingFalse}
@@ -60,7 +60,7 @@ export default function AdminBody({
           onSaveClicked={onSaveClicked}
           firstInputName={rewardName}
           secondInputName={rewardPrice}
-          url={url}
+          url={url + "/rewards"}
           isEditing={isEditing}
           editingItem={editingItem}
           editingFalse={editingFalse}
@@ -75,7 +75,7 @@ export default function AdminBody({
           onSaveClicked={onSaveClicked}
           firstInputName={priorityName}
           secondInputName={priorityPoints}
-          url={url}
+          url={url + "/prioritys"}
           isEditing={isEditing}
           editingItem={editingItem}
           editingFalse={editingFalse}
@@ -90,7 +90,7 @@ export default function AdminBody({
           onSaveClicked={onSaveClicked}
           firstInputName={colorHexcode}
           secondInputName={colorName}
-          url={url}
+          url={url + "/colors"}
           isEditing={isEditing}
           editingItem={editingItem}
           editingFalse={editingFalse}

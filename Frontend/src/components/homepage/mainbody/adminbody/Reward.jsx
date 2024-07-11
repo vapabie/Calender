@@ -19,11 +19,10 @@ export default function Reward({
   const nameOnChange = (e) => setRewardName(e.target.value);
   const priceOnChange = (e) => setRewardPrice(e.target.value);
   const [rewards, setRewards] = useState([]);
-  const deletePath = url + "rewards/delete/";
 
   const handleSaveClicked = () => {
     const reward = { rewardName, price: rewardPrice };
-    fetch(url + "rewards/addreward", {
+    fetch(url + "/addreward", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(reward),
@@ -39,7 +38,7 @@ export default function Reward({
 
   const handleUpdateClick = () => {
     const reward = { rewardName, price: rewardPrice };
-    fetch(url + "rewards/update/" + editingItem.rewardID, {
+    fetch(url + "/update/" + editingItem.rewardID, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(reward),
@@ -54,7 +53,7 @@ export default function Reward({
   };
 
   const fetchRewards = () => {
-    fetch(url + "rewards")
+    fetch(url)
       .then((res) => res.json())
       .then((result) => {
         setRewards(result);
@@ -98,7 +97,7 @@ export default function Reward({
         itemType={"rewards"}
         firstInputName={firstInputName}
         secondInputName={secondInputName}
-        fetchedpath={deletePath}
+        fetchedpath={url + "/delete/"}
         onItemsChange={fetchRewards}
         onEditClick={handleEditClick}
       />

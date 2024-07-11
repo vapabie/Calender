@@ -19,11 +19,10 @@ export default function Priority({
   const nameOnChange = (e) => setPriorityName(e.target.value);
   const pointsOnChange = (e) => setPriorityPoints(e.target.value);
   const [prioritys, setPrioritys] = useState([]);
-  const deletePath = url + "prioritys/delete/";
 
   const handleSaveClicked = () => {
     const priority = { priorityName, priorityPoints };
-    fetch(url + "prioritys/addpriority", {
+    fetch(url + "/addpriority", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(priority),
@@ -39,7 +38,7 @@ export default function Priority({
 
   const handleUpdateClick = () => {
     const priority = { priorityName, priorityPoints };
-    fetch(url + "prioritys/update/" + editingItem.priorityID, {
+    fetch(url + "/update/" + editingItem.priorityID, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(priority),
@@ -54,7 +53,7 @@ export default function Priority({
   };
 
   const fetchPriorities = () => {
-    fetch(url + "prioritys")
+    fetch(url)
       .then((res) => res.json())
       .then((result) => {
         setPrioritys(result);
@@ -98,7 +97,7 @@ export default function Priority({
         itemType={"prioritys"}
         firstInputName={firstInputName}
         secondInputName={secondInputName}
-        fetchedpath={deletePath}
+        fetchedpath={url + "/delete/"}
         onItemsChange={fetchPriorities}
         onEditClick={handleEditClick}
       />
