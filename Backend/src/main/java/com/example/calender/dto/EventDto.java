@@ -17,10 +17,8 @@ public class EventDto {
     private String location;
     private Long priorityID;
     private Boolean isAllDay;
-    private LocalDate startDate;
-    private LocalDate endDate;
-    private LocalTime startTime;
-    private LocalTime endTime;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
     private Long colorID;
 
 }

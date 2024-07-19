@@ -4,42 +4,32 @@ import "react-datepicker/dist/react-datepicker.css";
 export default function TimeSlot({
   startDate,
   onStartDateChange,
-  startTime,
-  onStartTimeChange,
   endDate,
   onEndDateChange,
-  endTime,
-  onEndTimeChange,
 }) {
   return (
     <div>
-      <label>
-        <DatePicker selected={startDate} onChange={onStartDateChange} />
-      </label>
+      <label> from </label>
       <label>
         <DatePicker
-          selected={startTime}
-          onChange={onStartTimeChange}
+          selected={startDate}
+          onChange={onStartDateChange}
           showTimeSelect
-          showTimeSelectOnly
           timeIntervals={15}
           timeCaption="Time"
-          dateFormat="h:mm aa"
+          dateFormat="Pp"
         />
       </label>
+      <label> to </label>
       <label>
         <DatePicker
-          selected={endTime}
-          onChange={onEndTimeChange}
+          selected={endDate}
+          onChange={onEndDateChange}
           showTimeSelect
-          showTimeSelectOnly
           timeIntervals={15}
           timeCaption="Time"
-          dateFormat="h:mm aa"
+          dateFormat="Pp"
         />
-      </label>
-      <label>
-        <DatePicker selected={endDate} onChange={onEndDateChange} />
       </label>
     </div>
   );

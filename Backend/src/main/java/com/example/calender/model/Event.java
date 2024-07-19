@@ -30,22 +30,16 @@ public class Event {
 
     @ManyToOne
     @JoinColumn(name = "fk_priorityid")
-    private Priority priorityID;
+    private Priority priority;
 
     @Column(name = "isallday")
     private Boolean isAllDay;
 
     @Column(name = "startdate")
-    private LocalDate startDate;
+    private LocalDateTime startDate;
 
     @Column(name = "enddate")
-    private LocalDate endDate;
-
-    @Column(name = "starttime")
-    private LocalTime startTime;
-
-    @Column(name = "endtime")
-    private LocalTime endTime;
+    private LocalDateTime endDate;
 
     @ManyToOne
     @JoinColumn(name = "fk_colorid")

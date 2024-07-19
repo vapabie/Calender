@@ -3,6 +3,8 @@ import HomePage from "./components/HomePage";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import "./App.css";
+import "react-date-picker/dist/DatePicker.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const isLogedIn = true;
 
