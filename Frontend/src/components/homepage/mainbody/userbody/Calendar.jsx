@@ -8,16 +8,14 @@ function Calendar() {
     <div className="Body-container">
       <div className="LeftSideBar-container">
         <div className="MiniCalender-container">
-          {/*
-          <CalenderTable />
-          */}
+          <CalenderTable isMiniC={true} />
         </div>
         <div className="Preview-container">
           <Preview />
         </div>
       </div>
       <div className="Center-container">
-        <CalenderTable />
+        <CalenderTable isMiniC={false} />
       </div>
       <div className="RightSideBar-container">
         <AssistensSidebar />

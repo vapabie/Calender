@@ -2,7 +2,7 @@ import { useState } from "react";
 import CalenderHeader from "./CalenderHeader";
 import CalendarDays from "./CalenderDay";
 
-export default function CalenderTable() {
+export default function CalenderTable({ isMiniC }) {
   const months = [
     "January",
     "February",
@@ -59,7 +59,11 @@ export default function CalenderTable() {
         onPreviousMonth={previousMonth}
       />
       <div className="calendar-body">
-        <CalendarDays day={currentDay} changeCurrentDay={changeCurrentDay} />
+        <CalendarDays
+          day={currentDay}
+          changeCurrentDay={changeCurrentDay}
+          isMiniC={isMiniC}
+        />
       </div>
     </div>
   );
