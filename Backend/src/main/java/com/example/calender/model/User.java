@@ -1,31 +1,41 @@
 package com.example.calender.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import lombok.Data;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
-import java.util.ArrayList;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
+import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "userc")
-public class User {
+public class User{
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "userid")
     private Long userID;
 
-    @NotNull
+    @Email
+    @NotBlank
     @Column(name = "email", unique = true)
     private String email;
 
-    @NotNull
-    @Column(name ="username")
-    private String username;
+    @NotBlank
+    @Column(name ="name")
+    private String name;
 
-    @NotNull
+    @NotBlank
     @Column(name ="userpassword")
     private String password;
 
@@ -35,10 +45,12 @@ public class User {
     @Column(name = "isadmin", columnDefinition = "boolean default false")
     private boolean isAdmin;
 
-    @OneToMany(mappedBy = "userID", cascade = CascadeType.ALL)
-    private List<Event> userEvents = new ArrayList<>();
+    @OneToMany(mappedBy = "userID", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Event> userEvents;
 
-
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
 
 
 }
