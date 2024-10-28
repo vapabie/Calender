@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 import jakarta.validation.constraints.NotNull;
 
-
-
 @Entity
 @Data
 @Table(name = "color")
@@ -23,5 +21,4 @@ public class Color {
     @NotNull
     @Column(name = "colorname")
     private String colorName;
-
 }
