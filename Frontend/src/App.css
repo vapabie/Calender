@@ -16,7 +16,6 @@
 }
 
 .anp * {
-  background-color: red;
   margin-left: 20px;
   margin-right: 20px;
 }
@@ -28,6 +27,8 @@
 .Body-container {
   height: 100%;
   display: flex;
+  flex-direction: row;
+  width: 100%;
 }
 
 .RightSideBar-container {
@@ -41,13 +42,23 @@
 
 .Center-container {
   border: 2px solid red;
+  display: flex;
   width: 50%;
+  flex-direction: column;
+  overflow: hidden;
 }
-
+.calendar-body {
+  flex-grow: 1;
+}
+/*-----------------------------*/
 .cbar {
   width: 100%;
   table-layout: fixed;
   border: 2xp solid black;
+}
+.calendar-table {
+  width: 100%;
+  table-layout: fixed;
 }
 
 .nextMonthTD {
@@ -83,6 +94,53 @@ td {
   border: 1px solid #a6a6a6;
 }
 
+/*admin read */
 .itemTable {
-  border: medium solid black;
+  margin: 1vi 1vi 1vi 1vi;
+}
+.itemTable > thead {
+  border-bottom: medium solid black;
+}
+.itemTable > tbody > tr:nth-child(even) {
+  background-color: azure;
+}
+.itemTable > tbody > tr:nth-child(odd) {
+  background-color: #8aebff;
+}
+
+/*admin add*/
+.addcon {
+  margin: 1vh;
+}
+
+.addcon td {
+  text-align: center;
+}
+.savebutton {
+  background-color: #4aaee8;
+  border-radius: 10%;
+  border-color: white;
+  display: inline-block;
+  color: white;
+  font-size: 20px;
+  padding: 0.5vh 3vh 0.5vh 3vh;
+}
+.savebtncon {
+  text-align: center;
+  padding-top: 5vh;
+}
+/*navbar*/
+.nav {
+  background-color: #4aaee8;
+}
+
+.navbuttons {
+  align-self: flex-end;
+}
+
+.navcon {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
 }
