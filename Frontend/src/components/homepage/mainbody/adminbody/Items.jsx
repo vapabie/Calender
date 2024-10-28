@@ -10,6 +10,10 @@ function Item({
   onItemsChange,
   onEditClick,
 }) {
+  if (!Array.isArray(items)) {
+    console.error("Items is not an array:", items);
+    return null;
+  }
   return (
     <div>
       <table className="itemTable">
