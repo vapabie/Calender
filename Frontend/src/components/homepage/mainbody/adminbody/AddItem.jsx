@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function AddItem({
+export default function AddItem({
   onSaveClicked,
   firstOnChange,
   secondOnChange,
@@ -15,18 +15,32 @@ function AddItem({
     onItemsChange();
   };
   return (
-    <div>
-      <div>
-        <label>{firstInputName}</label>
-        <input value={firstInputValue} onChange={firstOnChange} />
-      </div>
-      <div>
-        <label>{secondInputName}</label>
-        <input value={secondInputValue} onChange={secondOnChange} />
-      </div>
-      <button onClick={onAddClicked}>save</button>
-    </div>
+    <table className="addcon">
+      <tbody>
+        <tr className="firstrow">
+          <td>
+            <label className="labelf">{firstInputName}</label>
+          </td>
+          <td>
+            <input value={firstInputValue} onChange={firstOnChange} />
+          </td>
+        </tr>
+        <tr className="secondrow">
+          <td>
+            <label className="labelf">{secondInputName}</label>
+          </td>
+          <td>
+            <input value={secondInputValue} onChange={secondOnChange} />
+          </td>
+        </tr>
+        <tr>
+          <td colSpan={2} className="savebtncon">
+            <button className="savebutton" onClick={onAddClicked}>
+              save
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   );
 }
-
-export default AddItem;
