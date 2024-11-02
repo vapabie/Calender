@@ -41,7 +41,7 @@ public class User{
     private Integer points;
 
     @Column(name = "disadmin", columnDefinition = "boolean default false")
-    private boolean isAdmin = false;
+    private boolean disAdmin = false;
 
     @OneToMany(mappedBy = "userID", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Event> userEvents;

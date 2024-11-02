@@ -1,18 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "./homepage/NavBar";
 import MainBody from "./homepage/MainBody";
 
-export default function HomePage() {
-  const [isAdmin, setIsAdmin] = useState(false);
+export default function HomePage({ loggedInUser, url, isAdmin, name }) {
   const [isAddClicked, setIsAddClicked] = useState(false);
   const [isSaveClicked, setIsSaveClicked] = useState(false);
   const [screen, setScreen] = useState("");
-
-  const getUser = () => {
-    fetch("http://localhost:8080/calendarwebapp/home/users/getuser/", {
-      method: "GET",
-    });
-  };
 
   const handleAddClicked = () => {
     setIsAddClicked(true);
@@ -37,6 +30,7 @@ export default function HomePage() {
         isAdmin={isAdmin}
         onAddClicked={handleAddClicked}
         onSwitchClicked={handleSwitchClicked}
+        name={name}
       />
       <MainBody
         isAdmin={isAdmin}

@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/calendarwebapp/home/users/")
+@RequestMapping("/calendarwebapp/home/users")
 @CrossOrigin
 public class UserController {
 
@@ -27,13 +27,14 @@ public class UserController {
     @GetMapping("/{email}")
     public ResponseEntity<UserDto> getUserByEmail(@PathVariable String email){
         if (!userServiceImp.isValidEmail(email)){
-            
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
         UserDto userDto = userServiceImp.findUserByEmail(email);
         if (userDto == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         userDto.setUserpassword(null);
+        System.out.println("UserDto returned: " + userDto);
         return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
 

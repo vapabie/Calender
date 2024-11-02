@@ -29,7 +29,7 @@ export default function Login({
             response.status
           );
           setisValidLogin(true);
-          loginClicked;
+          loginClicked();
         } else if (response.status === 401) {
           console.log("Password validation failed. Status:", response.status);
           setisValidLogin(false);
@@ -45,7 +45,7 @@ export default function Login({
   };
   return (
     <div>
-      {! && (
+      {!isValidLogin && (
         <div className="alert alert-danger" role="alert">
           Passwords is not correct.
         </div>

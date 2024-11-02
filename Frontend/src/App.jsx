@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import HomePage from "./components/HomePage";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
@@ -16,9 +16,37 @@ export default function App() {
   const pwagainOnchange = (e) => setPwAgain(e.target.value);
   const nameOnChange = (e) => setName(e.target.value);
   const [userc, setUserc] = useState([]);
-  const isLogedIn = false;
+  const [isLogedIn, setIsLogedIn] = useState(false);
   const [showLogin, setShowLogin] = useState(true);
-  const [userid, setUserId] = useState("");
+  const [loggedInUser, setLoggedInUser] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [userEvents, setUserEvents] = useState([]);
+  const [userID, setUserID] = useState("");
+
+  const fetchUser = async () => {
+    try {
+      const response = await fetch(`${url}/${loggedInUser}`);
+      if (response.ok) {
+        const user = await response.json();
+        setIsAdmin(user.disAdmin);
+        setName(user.name);
+        setUserEvents(user.userEvents);
+        setUserID(user.userID);
+      } else {
+        console.error("User not found or other error: ", response.status);
+      }
+    } catch (error) {
+      console.error("Error fetching user type: ", error);
+    }
+  };
+
+  useEffect(() => {
+    if (loggedInUser) {
+      fetchUser().then(() => {
+        console.log("isAdmin status after fetch:", isAdmin);
+      });
+    }
+  }, [loggedInUser]);
 
   const toggleComponent = () => {
     setShowLogin(!showLogin);
@@ -26,7 +54,8 @@ export default function App() {
 
   const handleLoginClicked = () => {
     setIsLogedIn(true);
-    setUserId();
+    setLoggedInUser(email);
+    console.log("Login clicked. Setting logged in state and email.");
   };
 
   const handleSignupClicked = () => {
@@ -43,7 +72,12 @@ export default function App() {
     });
   };
   return isLogedIn ? (
-    <HomePage />
+    <HomePage
+      loggedInUser={loggedInUser}
+      url={url}
+      isAdmin={isAdmin}
+      name={name}
+    />
   ) : (
     <div>
       {showLogin ? (
