@@ -17,27 +17,16 @@ export default function App() {
   const nameOnChange = (e) => setName(e.target.value);
   const [userc, setUserc] = useState([]);
   const isLogedIn = false;
-  const [showLogin, setShowLogin] = useState(false);
+  const [showLogin, setShowLogin] = useState(true);
+  const [userid, setUserId] = useState("");
 
   const toggleComponent = () => {
     setShowLogin(!showLogin);
   };
 
   const handleLoginClicked = () => {
-    emailOnChange();
-    userPasswordOnChange();
-    if (userpassword === userc) {
-    }
-  };
-  const getUsersPassword = () => {
-    fetch(url + "/getuser/" + email)
-      .then((res) => res.json())
-      .then((result) => {
-        setUserc(result);
-      })
-      .catch((error) => {
-        console.error("Fetch error: ", error);
-      });
+    setIsLogedIn(true);
+    setUserId();
   };
 
   const handleSignupClicked = () => {
@@ -58,7 +47,15 @@ export default function App() {
   ) : (
     <div>
       {showLogin ? (
-        <Login toggleComponent={toggleComponent} />
+        <Login
+          toggleComponent={toggleComponent}
+          loginClicked={handleLoginClicked}
+          loginEmail={email}
+          loginpassword={userpassword}
+          emailOnChange={emailOnChange}
+          userPasswordOnChange={userPasswordOnChange}
+          url={url}
+        />
       ) : (
         <SignUp
           toggleComponent={toggleComponent}

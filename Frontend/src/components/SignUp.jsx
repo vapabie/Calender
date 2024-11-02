@@ -25,7 +25,7 @@ export default function SignUp({
   };
 
   return (
-    <div className="login-signup-div">
+    <div>
       {!isPwSame && (
         <div className="alert alert-danger" role="alert">
           Passwords do not match. Please try again.

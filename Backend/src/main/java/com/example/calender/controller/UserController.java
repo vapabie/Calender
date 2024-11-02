@@ -27,10 +27,22 @@ public class UserController {
     @GetMapping("/{email}")
     public ResponseEntity<UserDto> getUserByEmail(@PathVariable String email){
         if (!userServiceImp.isValidEmail(email)){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            
         }
         UserDto userDto = userServiceImp.findUserByEmail(email);
+        if (userDto == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        userDto.setUserpassword(null);
         return new ResponseEntity<>(userDto, HttpStatus.OK);
+    }
+
+    @PostMapping("/validate-password")
+    public ResponseEntity<Boolean> validatePassword(@RequestParam String email, @RequestParam String password) {
+        if (userServiceImp.isValidPassword(password, email)){
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
 
     @PutMapping("/update/{id}")

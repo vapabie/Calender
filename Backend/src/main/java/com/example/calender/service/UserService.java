@@ -15,4 +15,6 @@ public interface UserService {
     boolean isValidId(Long id);
 
     boolean isValidEmail( String email);
+
+    boolean isValidPassword( String password, String email);
 }

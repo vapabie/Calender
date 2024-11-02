@@ -23,6 +23,7 @@ public class UserServiceImp implements UserService {
 
     @Override
     public UserDto saveUser(UserDto userDto) {
+
         userRepo.save(modelMapper.map(userDto, User.class));
         return userDto;
     }
@@ -66,4 +67,11 @@ public class UserServiceImp implements UserService {
     public boolean isValidEmail(String email) {
         return userRepo.existsByEmail(email);
     }
+
+    @Override
+    public boolean isValidPassword( String password, String email){
+       String goodPw = findUserByEmail(email).getUserpassword();
+        return password.equals(goodPw);
+    }
+
 }
