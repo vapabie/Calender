@@ -35,20 +35,18 @@ public class User{
 
     @NotBlank
     @Column(name ="userpassword")
-    private String password;
+    private String userpassword;
 
     @Column(name ="points", columnDefinition = "integer default 0")
     private Integer points;
 
-    @Column(name = "isadmin", columnDefinition = "boolean default false")
-    private boolean isAdmin;
+    @Column(name = "disadmin", columnDefinition = "boolean default false")
+    private boolean isAdmin = false;
 
     @OneToMany(mappedBy = "userID", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Event> userEvents;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Role role;
+
 
 
 }
