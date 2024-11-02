@@ -52,26 +52,27 @@ export default function AddEvent({
   }, []);
 
   return (
-    <div>
-      <StringInput
-        text={"Title"}
-        inputValue={eventName}
-        onChange={onEventNameChange}
-      />
-      <AllDay />
-      <TimeSlot
-        startDate={startDate}
-        onStartDateChange={onStartDateChange}
-        endDate={endDate}
-        onEndDateChange={onEndDateChange}
-      />
+    <div add-event-container>
+      <div className="addevent">
+        <StringInput
+          text={"Title"}
+          inputValue={eventName}
+          onChange={onEventNameChange}
+        />
+        <AllDay />
+        <TimeSlot
+          startDate={startDate}
+          onStartDateChange={onStartDateChange}
+          endDate={endDate}
+          onEndDateChange={onEndDateChange}
+        />
 
-      <StringInput
-        text={"Location"}
-        eventName={location}
-        onChange={onLocationChange}
-      />
-      <div>
+        <StringInput
+          text={"Location"}
+          eventName={location}
+          onChange={onLocationChange}
+        />
+
         <DropDown
           items={colors}
           dropDownName={selectedColor.colorName}
@@ -88,8 +89,11 @@ export default function AddEvent({
           keyProperty="priorityID"
         />
       </div>
-
-      <button onClick={onSaveClicked}>save</button>
+      <div className="addeventsavebtncon">
+        <button className="savebutton" onClick={onSaveClicked}>
+          save
+        </button>
+      </div>
     </div>
   );
 }

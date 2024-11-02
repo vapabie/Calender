@@ -8,8 +8,8 @@ export default function TimeSlot({
   onEndDateChange,
 }) {
   return (
-    <div>
-      <label> from </label>
+    <div className="timeslot">
+      <label> From </label>
       <label>
         <DatePicker
           selected={startDate}
@@ -20,7 +20,7 @@ export default function TimeSlot({
           dateFormat="Pp"
         />
       </label>
-      <label> to </label>
+      <label> To </label>
       <label>
         <DatePicker
           selected={endDate}
