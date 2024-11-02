@@ -77,6 +77,7 @@ export default function App() {
       url={url}
       isAdmin={isAdmin}
       name={name}
+      userID={userID}
     />
   ) : (
     <div>

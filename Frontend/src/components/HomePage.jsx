@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import NavBar from "./homepage/NavBar";
 import MainBody from "./homepage/MainBody";
 
-export default function HomePage({ loggedInUser, url, isAdmin, name }) {
+export default function HomePage({ loggedInUser, url, isAdmin, name, userID }) {
   const [isAddClicked, setIsAddClicked] = useState(false);
   const [isSaveClicked, setIsSaveClicked] = useState(false);
   const [screen, setScreen] = useState("");
@@ -38,6 +38,7 @@ export default function HomePage({ loggedInUser, url, isAdmin, name }) {
         isSaveClicked={isSaveClicked}
         onSaveClicked={handleSaveClicked}
         screen={screen}
+        userID={userID}
       />
     </div>
   );

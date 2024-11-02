@@ -9,12 +9,18 @@ function UserBody({
   isSaveClicked,
   onSaveClicked,
   isAllDay = false,
-  userID = 1,
+  userID,
 }) {
   const [eventName, setEventName] = useState("");
   const [location, setLocation] = useState("");
-  const [color, setColor] = useState("Select a Color");
-  const [priority, setPriority] = useState("Select a Priority");
+  const [selectedColor, setSelectedColor] = useState({
+    colorID: "",
+    colorName: "Select a Color",
+  }); // Updated to store object
+  const [selectedPriority, setSelectedPriority] = useState({
+    priorityID: "",
+    priorityName: "Select a Priority",
+  });
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
 
@@ -28,11 +34,11 @@ function UserBody({
       userID,
       eventName,
       location,
-      priority,
+      priorityID: selectedPriority.priorityID,
       isAllDay,
       startDate,
       endDate,
-      color,
+      colorID: selectedColor.colorID,
     };
     fetch(urlUser + "/events/addevent", {
       method: "POST",
@@ -44,8 +50,11 @@ function UserBody({
       setLocation("");
       setStartDate();
       setEndDate();
-      setColor("Select a Color");
-      setPriority("Select a Priority");
+      setSelectedColor({ colorID: "", colorName: "Select a Color" });
+      setSelectedPriority({
+        priorityID: "",
+        priorityName: "Select a Priority",
+      });
       onSaveClicked();
     });
   };
@@ -60,10 +69,10 @@ function UserBody({
         onEventNameChange={onEventNameChange}
         location={location}
         onLocationChange={onLocationChange}
-        color={color}
-        setColor={setColor}
-        priority={priority}
-        setPriority={setPriority}
+        selectedColor={selectedColor}
+        setSelectedColor={setSelectedColor}
+        selectedPriority={selectedPriority}
+        setSelectedPriority={setSelectedPriority}
         startDate={startDate}
         onStartDateChange={onStartDateChange}
         endDate={endDate}

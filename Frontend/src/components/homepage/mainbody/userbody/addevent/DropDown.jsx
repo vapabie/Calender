@@ -7,12 +7,14 @@ export default function DropDown({
   keyProperty = "id",
 }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
     console.log("dropdown clicked, is it opened?: " + isDropdownOpen);
   };
+
   const onDropDownItemClick = (item) => {
-    setDropDownName(item[displayProperty]);
+    setDropDownName(item);
     setIsDropdownOpen(false);
     console.log(
       "item choosen from drop down, is it opened?: " + isDropdownOpen
@@ -29,22 +31,21 @@ export default function DropDown({
         onClick={toggleDropdown}
       >
         {dropDownName}
-        {isDropdownOpen && (
-          <div>
-            <ul>
-              {items.map((item) => (
-                <li
-                  key={item[keyProperty]}
-                  value={item[displayProperty]}
-                  onClick={() => onDropDownItemClick(item)}
-                >
-                  <span>{item[displayProperty]}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
       </button>
+      {isDropdownOpen && (
+        <div>
+          <ul>
+            {items.map((item) => (
+              <li
+                key={item[keyProperty]}
+                onClick={() => onDropDownItemClick(item)}
+              >
+                <span>{item[displayProperty]}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }

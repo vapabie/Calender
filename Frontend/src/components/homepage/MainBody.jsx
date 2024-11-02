@@ -7,6 +7,7 @@ function MainBody({
   isSaveClicked,
   onSaveClicked,
   screen,
+  userID,
 }) {
   const url = "http://localhost:8080/calendarwebapp/home";
   return isAdmin ? (
@@ -24,6 +25,7 @@ function MainBody({
       isSaveClicked={isSaveClicked}
       urlUser={url + "/user"}
       urlAdmin={url + "/admin"}
+      userID={userID}
     />
   );
 }

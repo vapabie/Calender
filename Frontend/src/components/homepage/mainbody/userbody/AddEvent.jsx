@@ -10,10 +10,10 @@ export default function AddEvent({
   onEventNameChange,
   location,
   onLocationChange,
-  priority,
-  color,
-  setColor,
-  setPriority,
+  selectedColor,
+  setSelectedColor,
+  selectedPriority,
+  setSelectedPriority,
   startDate,
   onStartDateChange,
   endDate,
@@ -21,17 +21,8 @@ export default function AddEvent({
   urlAdmin,
   urlUser,
 }) {
-  const [selectedColor, setSelectedColor] = useState("Select a Color");
-  const [selectedPriority, setSelectedPriority] = useState("Select a Priority");
-
   const [colors, setColors] = useState([]);
   const [prioritys, setPrioritys] = useState([]);
-  const handleSaveClicked = () => {
-    {
-      onSaveClicked;
-    }
-    onSaveClicked();
-  };
 
   const fetchColors = () => {
     fetch(urlAdmin + "/colors")
@@ -83,22 +74,22 @@ export default function AddEvent({
       <div>
         <DropDown
           items={colors}
-          dropDownName={color}
-          setDropDownName={setColor}
+          dropDownName={selectedColor.colorName}
+          setDropDownName={(color) => setSelectedColor(color)}
           displayProperty="colorName"
           keyProperty="colorID"
         />
 
         <DropDown
           items={prioritys}
-          setDropDownName={setPriority}
-          dropDownName={priority}
+          dropDownName={selectedPriority.priorityName}
+          setDropDownName={(priority) => setSelectedPriority(priority)}
           displayProperty="priorityName"
           keyProperty="priorityID"
         />
       </div>
 
-      <button onClick={handleSaveClicked}>save</button>
+      <button onClick={onSaveClicked}>save</button>
     </div>
   );
 }
