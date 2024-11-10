@@ -60,7 +60,12 @@ export default function CalendarDays(props) {
                   onClick={() => props.changeCurrentDay(day)}
                 >
                   {day.number}
-                  <EventsOfDay isMiniC={props.isMiniC} />
+                  <EventsOfDay
+                    date={day.date}
+                    userID={props.userID}
+                    isMiniC={props.isMiniC}
+                    urlUser={props.urlUser}
+                  />
                 </td>
               );
             })}

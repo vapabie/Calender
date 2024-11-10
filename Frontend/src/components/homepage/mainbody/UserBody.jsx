@@ -80,7 +80,7 @@ function UserBody({
       />
     );
   } else {
-    return <Calendar />;
+    return <Calendar userID={userID} urlUser={urlUser} urlAdmin={urlAdmin} />;
   }
 }
 export default UserBody;

@@ -2,7 +2,7 @@ import { useState } from "react";
 import CalenderHeader from "./CalenderHeader";
 import CalendarDays from "./CalenderDay";
 
-export default function CalenderTable({ isMiniC }) {
+export default function CalenderTable({ isMiniC, userID, urlUser }) {
   const months = [
     "January",
     "February",
@@ -62,7 +62,9 @@ export default function CalenderTable({ isMiniC }) {
         <CalendarDays
           day={currentDay}
           changeCurrentDay={changeCurrentDay}
+          userID={userID}
           isMiniC={isMiniC}
+          urlUser={urlUser}
         />
       </div>
     </div>

@@ -3,22 +3,19 @@ import Preview from "./Preview";
 import CalenderTable from "./calendar/CalenderTable";
 import AssistensSidebar from "./AssistensSidebar";
 
-function Calendar() {
+function Calendar({ userID, urlUser, urlAdmin }) {
   return (
     <div className="Body-container">
       <div className="LeftSideBar-container">
-        <div className="MiniCalender-container">
-          <CalenderTable isMiniC={true} />
-        </div>
         <div className="Preview-container">
           <Preview />
         </div>
       </div>
       <div className="Center-container">
-        <CalenderTable isMiniC={false} />
+        <CalenderTable isMiniC={false} userID={userID} urlUser={urlUser} />
       </div>
       <div className="RightSideBar-container">
-        <AssistensSidebar />
+        <AssistensSidebar urlAdmin={urlAdmin} />
       </div>
     </div>
   );
