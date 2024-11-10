@@ -1,6 +1,15 @@
 import { useState, useEffect } from "react";
+import EventItem from "./EventItem";
 
-export default function EventsOfDay({ date, userID, isMiniC, urlUser }) {
+export default function EventsOfDay({
+  date,
+  userID,
+  isMiniC,
+  urlUser,
+  urlAdmin,
+  setClickedEvent,
+  onEventClicked,
+}) {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
@@ -31,9 +40,13 @@ export default function EventsOfDay({ date, userID, isMiniC, urlUser }) {
     <div>
       <ul>
         {events.map((event) => (
-          <li key={event.eventID} style={{ background: event.colorID.hexcode }}>
-            {event.eventName}{" "}
-          </li>
+          <EventItem
+            key={event.eventID}
+            event={event}
+            urlAdmin={urlAdmin}
+            setClickedEvent={setClickedEvent}
+            onEventClicked={onEventClicked}
+          />
         ))}
       </ul>
     </div>

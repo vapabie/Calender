@@ -43,7 +43,7 @@ export default function CalendarDays(props) {
           )}
         </tr>
       </thead>
-      <tbody>
+      <tbody className="calendar-weeks">
         {Array.from({ length: 6 }).map((_, rowIndex) => (
           <tr key={rowIndex}>
             {Array.from({ length: 7 }).map((_, colIndex) => {
@@ -65,6 +65,9 @@ export default function CalendarDays(props) {
                     userID={props.userID}
                     isMiniC={props.isMiniC}
                     urlUser={props.urlUser}
+                    urlAdmin={props.urlAdmin}
+                    setClickedEvent={props.setClickedEvent}
+                    onEventClicked={props.onEventClicked}
                   />
                 </td>
               );
