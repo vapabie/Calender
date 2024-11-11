@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/calendarwebapp/home/admin/colors")
 @AllArgsConstructor
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:5173")
 public class ColorController {
 
     @Autowired

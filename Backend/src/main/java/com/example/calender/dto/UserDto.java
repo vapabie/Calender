@@ -4,6 +4,8 @@ package com.example.calender.dto;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class UserDto {
 
@@ -13,4 +15,5 @@ public class UserDto {
     private String userpassword;
     private int points;
     private boolean disAdmin;
+    private List<EventDto> userEvents;
 }

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ColorService {
 
-    public ColorDto saveColor(ColorDto colorDto);
+    ColorDto saveColor(ColorDto colorDto);
 
     public ColorDto findColorById(Long id);
 

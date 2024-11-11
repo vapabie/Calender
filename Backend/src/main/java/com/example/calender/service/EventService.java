@@ -4,6 +4,7 @@ import com.example.calender.dto.EventDto;
 import com.example.calender.model.Event;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface EventService {

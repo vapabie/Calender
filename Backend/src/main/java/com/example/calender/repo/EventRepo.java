@@ -12,6 +12,7 @@ import java.util.List;
 
 
 public interface EventRepo extends JpaRepository<Event, Long> {
-    @Query("SELECT e FROM Event e WHERE e.userID = :user AND :date BETWEEN DATE(e.startDate) AND DATE(e.endDate)")
-   List<Event> findEventByUserAndDate(@Param("user") User user, @Param("date")LocalDate date);
+    @Query("SELECT e FROM Event e WHERE e.userID = :user AND :date BETWEEN FUNCTION('DATE', e.startDate) AND FUNCTION('DATE', e.endDate)")
+    List<Event> findEventsByUserAndDate(@Param("user") User user, @Param("date") LocalDate date);
+
 }

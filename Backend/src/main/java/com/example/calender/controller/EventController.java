@@ -3,11 +3,13 @@ package com.example.calender.controller;
 import com.example.calender.dto.EventDto;
 import com.example.calender.service.serviceImp.EventServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -45,7 +47,7 @@ public class EventController {
     }
 
     @GetMapping("/{userId}/date")
-    public ResponseEntity<List<EventDto>> getEventsByUserAndDate(@PathVariable Long userId, @RequestParam("date")LocalDate date){
+    public ResponseEntity<List<EventDto>> getEventsByUserAndDate(@PathVariable Long userId, @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date){
         List<EventDto> events = eventServiceImp.findEventsByUserAndDate(userId, date);
         return new ResponseEntity<>(events, HttpStatus.OK);
     }

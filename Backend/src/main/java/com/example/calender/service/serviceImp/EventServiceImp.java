@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -66,7 +67,7 @@ public class EventServiceImp implements EventService {
     @Override
     public List<EventDto> findEventsByUserAndDate(Long userId, LocalDate date) {
         User user = userRepo.findById(userId).orElseThrow(()-> new EntityNotFoundException("No User Found With This ID: " + userId));
-        List<Event> events = eventRepo.findEventByUserAndDate(user, date);
+        List<Event> events = eventRepo.findEventsByUserAndDate(user, date);
         return events.stream()
                 .map(event -> modelMapper.map(event, EventDto.class)).collect(Collectors.toList());
     }
