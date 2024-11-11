@@ -8,6 +8,8 @@ function MainBody({
   onSaveClicked,
   screen,
   userID,
+  setPoints,
+  points,
 }) {
   const url = "http://localhost:8080/calendarwebapp/home";
   return isAdmin ? (
@@ -26,6 +28,8 @@ function MainBody({
       urlUser={url + "/user"}
       urlAdmin={url + "/admin"}
       userID={userID}
+      setPoints={setPoints}
+      points={points}
     />
   );
 }

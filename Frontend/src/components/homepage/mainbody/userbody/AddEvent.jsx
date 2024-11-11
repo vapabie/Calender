@@ -20,6 +20,8 @@ export default function AddEvent({
   onEndDateChange,
   urlAdmin,
   urlUser,
+  setPoints,
+  points,
 }) {
   const [colors, setColors] = useState([]);
   const [prioritys, setPrioritys] = useState([]);
@@ -46,6 +48,11 @@ export default function AddEvent({
       });
   };
 
+  const handleSaveClicked = () => {
+    setPoints((prevPoints) => prevPoints + selectedPriority.priorityPoints);
+    onSaveClicked();
+  };
+
   useEffect(() => {
     fetchColors();
     fetchPriorities();
@@ -54,6 +61,7 @@ export default function AddEvent({
   return (
     <div add-event-container>
       <div className="addevent">
+        <h2>New event</h2>
         <StringInput
           text={"Title"}
           inputValue={eventName}
@@ -66,13 +74,11 @@ export default function AddEvent({
           endDate={endDate}
           onEndDateChange={onEndDateChange}
         />
-
         <StringInput
           text={"Location"}
           eventName={location}
           onChange={onLocationChange}
         />
-
         <DropDown
           items={colors}
           dropDownName={selectedColor.colorName}
@@ -80,7 +86,6 @@ export default function AddEvent({
           displayProperty="colorName"
           keyProperty="colorID"
         />
-
         <DropDown
           items={prioritys}
           dropDownName={selectedPriority.priorityName}
@@ -90,7 +95,7 @@ export default function AddEvent({
         />
       </div>
       <div className="addeventsavebtncon">
-        <button className="savebutton" onClick={onSaveClicked}>
+        <button className="savebutton" onClick={handleSaveClicked}>
           save
         </button>
       </div>

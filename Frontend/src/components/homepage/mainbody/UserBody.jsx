@@ -10,6 +10,8 @@ function UserBody({
   onSaveClicked,
   isAllDay = false,
   userID,
+  setPoints,
+  points,
 }) {
   const [eventName, setEventName] = useState("");
   const [location, setLocation] = useState("");
@@ -77,10 +79,20 @@ function UserBody({
         onStartDateChange={onStartDateChange}
         endDate={endDate}
         onEndDateChange={onEndDateChange}
+        setPoints={setPoints}
+        points={points}
       />
     );
   } else {
-    return <Calendar userID={userID} urlUser={urlUser} urlAdmin={urlAdmin} />;
+    return (
+      <Calendar
+        userID={userID}
+        urlUser={urlUser}
+        urlAdmin={urlAdmin}
+        setPoints={setPoints}
+        points={points}
+      />
+    );
   }
 }
 export default UserBody;

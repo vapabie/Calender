@@ -6,6 +6,7 @@ import AssistensSidebar from "./AssistensSidebar";
 function Calendar({ userID, urlUser, urlAdmin, setPoints, points }) {
   const [clickedEvent, setClickedEvent] = useState([]);
   const [message, setMessage] = useState("");
+  const [isMessageEvent, setIsMessageEvent] = useState(false);
 
   const eventDetails = () => {
     if (clickedEvent) {
@@ -13,10 +14,10 @@ function Calendar({ userID, urlUser, urlAdmin, setPoints, points }) {
         <p>
           Here is everything you need to know about {clickedEvent.eventName}. It
           will start at {clickedEvent.startDate} and will end at{" "}
-          {clickedEvent.endDate}. The location is at
-          {clickedEvent.location}.
+          {clickedEvent.endDate}. The location is at {clickedEvent.location}.
         </p>
       );
+      setIsMessageEvent(true);
     }
   };
 
@@ -40,6 +41,9 @@ function Calendar({ userID, urlUser, urlAdmin, setPoints, points }) {
           text={message}
           setPoints={setPoints}
           points={points}
+          isMessageEvent={isMessageEvent}
+          setIsMessageEvent={setIsMessageEvent}
+          clickedEvent={clickedEvent.eventID}
         />
       </div>
     </div>
