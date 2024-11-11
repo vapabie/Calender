@@ -22,6 +22,7 @@ export default function App() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [userEvents, setUserEvents] = useState([]);
   const [userID, setUserID] = useState("");
+  const [userPoints, setUserPoints] = useState("");
 
   const fetchUser = async () => {
     try {
@@ -32,6 +33,7 @@ export default function App() {
         setName(user.name);
         setUserEvents(user.userEvents);
         setUserID(user.userID);
+        setUserPoints(user.points);
       } else {
         console.error("User not found or other error: ", response.status);
       }
@@ -78,6 +80,8 @@ export default function App() {
       isAdmin={isAdmin}
       name={name}
       userID={userID}
+      points={userPoints}
+      setPoints={setUserPoints}
     />
   ) : (
     <div>
